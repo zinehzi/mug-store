@@ -1,0 +1,72 @@
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mug-Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container home-page">
+      <header class="header">
+        <menu class="menu">
+          <ul>
+            <li><a href="#">صفحه اصلی</a></li>
+            <li><a href="#">درباره ما</a></li>
+            <li><a href="#">تماس با ما</a></li>
+          </ul>
+        </menu>
+        <div class="search-bar">
+          <i class="fa fa-search"></i>
+          <input type="search" placeholder="عبارت موردنظر را جستجو کنید..." />
+        </div>
+        <h3 class="logo">Mug Store</h3>
+      </header>
+      <main class="main">
+        <section class="slide-show">
+          <!-- <img src="./images/slider-2.jpg"> -->
+        </section>
+        <section class="main-content">
+          <div class="filter-bar">
+            <div class="price">
+              <label>فیلتر براساس قیمت</label>
+              <input type="range" min="0" max="1000000" />
+            </div>
+            <div class="style">
+              <label>فیلتر براساس سبک</label>
+              <div>
+                <label>سنتی</label>
+                <input type="checkbox" value="سنتی" />
+              </div>
+              <div>
+                <label>مدرن</label>
+                <input type="checkbox" value="مدرن" />
+              </div>
+              <div>
+                <label>کلاسیک</label>
+                <input type="checkbox" value="کلاسیک" />
+              </div>
+            </div>
+          </div>
+          <div class="product-list"></div>
+        </section>
+      </main>
+      <footer class="footer">
+        <nav>
+          <ul>
+            <li><a href="#">صفحه اصلی</a></li>
+            <li><a href="#">درباره ما</a></li>
+            <li><a href="#">تماس با ما</a></li>
+          </ul>
+        </nav>
+        <div class="info">
+          <h5>لطفا با ما در تماس باشید</h5>
+          <span>021-22000</span>
+          <p>تهران، خیابان آفریقا، بالاتر از پل میرداماد</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
