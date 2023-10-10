@@ -1,6 +1,9 @@
-const url = "http://localhost:3000/";
+const url = "http://localhost:3000";
 
 const fetchProducts = async () => {
-  const products = await fetch(url);
-  console.log(products);
+  const res = await fetch(`${url}/products`);
+  const data = await res.json();
+  return data;
 };
+
+export {fetchProducts};
