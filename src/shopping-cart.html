@@ -1,9 +1,9 @@
+<!DOCTYPE html>
 <html lang="en" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mug-Store</title>
-    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <title>Shopping-Cart</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container home-page">
+    <div class="container shopping-cart">
       <header class="header">
         <menu class="menu">
           <ul>
@@ -28,38 +28,10 @@
           <input type="search" placeholder="عبارت موردنظر را جستجو کنید..." />
         </div>
         <h3 class="logo">Mug Store</h3>
-        <div class="cart-icon-container">
-          <i id="cart-icon" class="fa fa-shopping-cart"></i>
-          <span id="cart-icon-count"></span>
-        </div>
       </header>
       <main class="main">
-        <section class="slide-show">
-          <!-- <img src="./images/slider-2.jpg"> -->
-        </section>
         <section class="main-content">
-          <div class="filter-bar">
-            <div class="price">
-              <label>فیلتر براساس قیمت</label>
-              <input type="range" min="0" max="1000000" />
-            </div>
-            <div class="style">
-              <label>فیلتر براساس سبک</label>
-              <div>
-                <label>سنتی</label>
-                <input type="checkbox" value="سنتی" />
-              </div>
-              <div>
-                <label>مدرن</label>
-                <input type="checkbox" value="مدرن" />
-              </div>
-              <div>
-                <label>کلاسیک</label>
-                <input type="checkbox" value="کلاسیک" />
-              </div>
-            </div>
-          </div>
-          <div id="product-list" class="product-list"></div>
+          <div id="cart-list" class="cart-list"></div>
         </section>
       </main>
       <footer class="footer">
@@ -78,6 +50,6 @@
       </footer>
     </div>
 
-    <script type="module" src="index.js"></script>
+    <script type="module" src="shopping-cart.js"></script>
   </body>
 </html>
