@@ -2,31 +2,31 @@
     {
         "name" : "ماگ دست ساز مدل شماره 1",
         "price" : 300000,
-        "image" : "img-1"        
+        "image" : "img-1.webp"        
     },
         {
         "name" : "ماگ دست ساز مدل شماره 2",
         "price" : 200000,
-        "image" : "img-2"        
+        "image" : "img-2.jpeg"        
     },
         {
         "name" : "ماگ دست ساز مدل شماره 3",
         "price" : 500000,
-        "image" : "img-3"        
+        "image" : "img-3.webp"        
     },
         {
         "name" : "ماگ دست ساز مدل شماره 4",
         "price" : 400000,
-        "image" : "img-4"        
+        "image" : "img-4.jpeg"        
     },
         {
         "name" : "ماگ دست ساز مدل شماره 5",
         "price" : 300000,
-        "image" : "img-5"        
+        "image" : "img-5.webp"        
     },
         {
         "name" : "ماگ دست ساز مدل شماره 6",
         "price" : 250000,
-        "image" : "img-6"        
+        "image" : "img-6.webp"        
     }
 ]

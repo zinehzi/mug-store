@@ -4,7 +4,7 @@ import cors from "cors";
 
 const app = express();
 const port = 3000;
-app.use(cors());
+app.use(cors({origin: "*", allowedHeaders: "*", methods: "*"}));
 
 let mongoClient = await connectToCluster(URI);
 const db = mongoClient.db("store");
