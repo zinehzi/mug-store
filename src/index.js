@@ -1,7 +1,9 @@
 import { fetchProducts } from "./api/products.js";
 
 let cart = [];
+let productItem = [];
 let count = 0;
+let cartCount = 0;
 
 const productList = document.getElementById("product-list");
 const cartIconCount = document.getElementById("cart-icon-count");
@@ -10,9 +12,23 @@ const displayProducts = (products) => {
   for (let product of products) {
     const productDiv = document.createElement("div");
     productDiv.className = "product";
+    const productLink = document.createElement("a");
+    productLink.target = "_blank";
     const productImg = document.createElement("Img");
     productImg.src = `../images/${product.image}`;
+    productLink.appendChild(productImg);
+    productLink.onclick = () => {
+      productItem = [];
+      productLink.href = "/src/product-detail.html";
+      productItem.push({
+        id: product._id,
+        name: product.name,
+        price: product.price,
+      });
+      localStorage.setItem("productItem", JSON.stringify(productItem));
+    };
     const productCaption = document.createElement("div");
+    productCaption.className = "product-caption";
     const productTitle = document.createElement("span");
     productTitle.textContent = `${product.name}`;
     const productPrice = document.createElement("span");
@@ -27,14 +43,12 @@ const displayProducts = (products) => {
     productBtn.onclick = () => addToCart(product);
     productCaption.appendChild(productTitle);
     productCaption.appendChild(productPrice);
-    productDiv.appendChild(productImg);
+    productDiv.appendChild(productLink);
     productDiv.appendChild(productCaption);
     productDiv.appendChild(productBtn);
     productList.appendChild(productDiv);
   }
 };
-
-let cartCount = 0;
 
 function addToCart(product) {
   if (!cart.find((cartId) => cartId.id === product._id)) {
@@ -64,4 +78,4 @@ async function render() {
 
 render();
 
-export {cart};
+export { addToCart };

@@ -6,4 +6,10 @@ const fetchProducts = async () => {
   return data;
 };
 
-export {fetchProducts};
+const fetchProduct = async (id) => {
+  const res = await fetch(`${url}/products/${id}`);
+  const data = await res.json();
+  return data;
+};
+
+export {fetchProducts,fetchProduct};

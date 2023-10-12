@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>سبد خرید</title>
+    <title>صفحه محصول</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container shopping-cart">
+    <div class="container product-detail">
       <header class="header">
         <menu class="menu">
           <ul>
@@ -28,10 +28,15 @@
           <input type="search" placeholder="عبارت موردنظر را جستجو کنید..." />
         </div>
         <h3 class="logo">Mug Store</h3>
+        <div class="cart-icon-container">
+          <i id="cart-icon" class="fa fa-shopping-cart"></i>
+          <span id="cart-icon-count"></span>
+        </div>
       </header>
       <main class="main">
-        <section class="main-content">
-          <div id="cart-list" class="cart-list"></div>
+        <section>
+            <div id="product-detail-top" class="product-detail-top">
+            </div>
         </section>
       </main>
       <footer class="footer">
@@ -43,13 +48,14 @@
           </ul>
         </nav>
         <div class="info">
-          <h5>لطفا با ما در تماس باشید</h5>
+          <h5> با ما در تماس باشید</h5>
           <span>021-22000</span>
           <p>تهران، خیابان آفریقا، بالاتر از پل میرداماد</p>
         </div>
       </footer>
     </div>
 
-    <script type="module" src="index.js"></script>
+    <script type="module" src="product-detail.js">
+    </script>
   </body>
 </html>
