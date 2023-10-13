@@ -217,13 +217,13 @@ nav ul li a {
   gap: 10px;
 }
 
-.product-detail-top {
+.product-detail-container {
   display: flex;
   flex: 100%;
   gap: 50px;
   padding: 50px 10px;
 }
-.product-detail-top img {
+.product-detail-container img {
   height: 400px;
 }
 
@@ -239,4 +239,41 @@ nav ul li a {
   text-align: justify;
   padding: 20px;
   border-right: 1px solid #e7e7e7;
+}
+
+.cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 50px;
+  padding: 30px;
+  border: 1px solid gray;
+}
+
+.cart-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cart-list li {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  cursor: pointer;
+}
+
+.cart-list li img {
+  width: 128px;
+  height: 128px;
+}
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.cart-actions i {
+  cursor: pointer;
 }

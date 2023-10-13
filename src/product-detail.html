@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>صفحه محصول</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -23,20 +24,22 @@
             <li><a href="#">تماس با ما</a></li>
           </ul>
         </menu>
-        <div class="search-bar">
-          <i class="fa fa-search"></i>
-          <input type="search" placeholder="عبارت موردنظر را جستجو کنید..." />
-        </div>
         <h3 class="logo">Mug Store</h3>
-        <div class="cart-icon-container">
-          <i id="cart-icon" class="fa fa-shopping-cart"></i>
-          <span id="cart-icon-count"></span>
+        <div class="left-bar">
+          <div class="search-bar">
+            <i class="fa fa-search"></i>
+            <input type="" placeholder="عبارت موردنظر را جستجو کنید..." />
+          </div>
+          <div id="cart-icon-container" class="cart-icon-container">
+            <i id="cart-icon" class="fa fa-shopping-cart"></i>
+            <span id="cart-icon-count"></span>
+          </div>
+          <i class="fa fa-user-circle user-profile"></i>
         </div>
       </header>
       <main class="main">
         <section>
-            <div id="product-detail-top" class="product-detail-top">
-            </div>
+          <div id="product-detail-container" class="product-detail-container"></div>
         </section>
       </main>
       <footer class="footer">
@@ -48,14 +51,13 @@
           </ul>
         </nav>
         <div class="info">
-          <h5> با ما در تماس باشید</h5>
+          <h5>با ما در تماس باشید</h5>
           <span>021-22000</span>
           <p>تهران، خیابان آفریقا، بالاتر از پل میرداماد</p>
         </div>
       </footer>
     </div>
 
-    <script type="module" src="product-detail.js">
-    </script>
+    <script type="module" src="product-detail.js"></script>
   </body>
 </html>

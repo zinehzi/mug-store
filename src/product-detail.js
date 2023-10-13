@@ -2,7 +2,7 @@ import { fetchProduct } from "./api/products.js";
 import { addToCart } from "./index.js";
 
 const displayProductDetail = (product) => {
-  const proDetailTop = document.getElementById("product-detail-top");
+  const proDetailCont = document.getElementById("product-detail-container");
   const proDetailImg = document.createElement("img");
   proDetailImg.src = `../images/${product.image}`;
   const proDetailCaption = document.createElement("div");
@@ -26,9 +26,9 @@ const displayProductDetail = (product) => {
   proDetailDesc.textContent = `توضیحات تکمیلی : ${product.desc}`;
   proDetailDesc.className = "product-detail-desc";
 
-  proDetailTop.appendChild(proDetailImg);
-  proDetailTop.appendChild(proDetailCaption);
-  proDetailTop.appendChild(proDetailDesc);
+  proDetailCont.appendChild(proDetailImg);
+  proDetailCont.appendChild(proDetailCaption);
+  proDetailCont.appendChild(proDetailDesc);
   
 };
 

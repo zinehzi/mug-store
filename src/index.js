@@ -6,6 +6,7 @@ let count = 0;
 let cartCount = 0;
 
 const productList = document.getElementById("product-list");
+const cartIcon = document.getElementById("cart-icon-container");
 const cartIconCount = document.getElementById("cart-icon-count");
 
 const displayProducts = (products) => {
@@ -22,8 +23,6 @@ const displayProducts = (products) => {
       productLink.href = "/src/product-detail.html";
       productItem.push({
         id: product._id,
-        name: product.name,
-        price: product.price,
       });
       localStorage.setItem("productItem", JSON.stringify(productItem));
     };
@@ -56,6 +55,7 @@ function addToCart(product) {
       id: product._id,
       name: product.name,
       price: product.price,
+      image: product.image,
       quantity: count + 1,
     });
     cartIconCount.classList.add("cart-icon-count");
@@ -69,7 +69,12 @@ function addToCart(product) {
 
     cartIconCount.textContent = cartCount;
   }
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
+
+cartIcon.addEventListener("click", () => {
+  window.location.href = "/src/shopping-cart.html";
+});
 
 async function render() {
   const products = await fetchProducts();
