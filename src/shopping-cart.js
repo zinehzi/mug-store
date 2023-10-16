@@ -1,7 +1,7 @@
 const cart = JSON.parse(localStorage.getItem("cart"));
 const cartCont = document.getElementById("cart-container");
 const cartList = document.getElementById("cart-list");
-const cartAct = document.getElementById("cart-actions");
+
 
 const displayCartList = (cart) => {
   for (let Item of cart) {
@@ -23,16 +23,18 @@ const displayCartList = (cart) => {
     cartItem.appendChild(cartTitle);
     cartItem.appendChild(cartPrice);
 
+    const cartAction = document.createElement("div");
+    cartAction.className = "cart-action";
     const cartCount = document.createElement("span");
     cartCount.textContent = `${Item.quantity}`;
     const cartDel = document.createElement("i");
     cartDel.classList.add("fa", "fa-trash");
-    cartAct.appendChild(cartCount);
-    cartAct.appendChild(cartDel);
+    cartAction.appendChild(cartCount);
+    cartAction.appendChild(cartDel);
 
     cartList.appendChild(cartLink);
+    cartList.appendChild(cartAction);
     cartCont.appendChild(cartList);
-    cartCont.appendChild(cartAct);
   }
 };
 

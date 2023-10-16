@@ -29,7 +29,6 @@ const displayProductDetail = (product) => {
   proDetailCont.appendChild(proDetailImg);
   proDetailCont.appendChild(proDetailCaption);
   proDetailCont.appendChild(proDetailDesc);
-  
 };
 
 async function render() {
