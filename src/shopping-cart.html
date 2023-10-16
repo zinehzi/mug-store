@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container home-page">
+    <div class="container shopping-cart">
       <header class="header">
         <menu class="menu">
           <ul>
@@ -28,9 +28,9 @@
         <div class="left-bar">
           <div class="search-bar">
             <i class="fa fa-search"></i>
-            <input type="search" placeholder="عبارت موردنظر را جستجو کنید..." />
+            <input type="" placeholder="عبارت موردنظر را جستجو کنید..." />
           </div>
-          <div class="cart-icon-container">
+          <div id="cart-icon-container" class="cart-icon-container">
             <i id="cart-icon" class="fa fa-shopping-cart"></i>
             <span id="cart-icon-count"></span>
           </div>
@@ -38,9 +38,37 @@
         </div>
       </header>
       <main class="main">
-          <section id="cart-container" class="cart-container">
-            <ul id="cart-list" class="cart-list"></ul>
-          </section>
+        <section id="cart-container" class="cart-container">
+          <table>
+            <thead>
+              <th></th>
+              <th>عنوان</th>
+              <th>تعداد</th>
+              <th>قیمت واحد</th>
+              <th>قیمت کل</th>
+              <th></th>
+            </thead>
+            <tbody id="cart-list" class="cart-list"></tbody>
+          </table>
+        </section>
+        <section class="cart-calc">
+          <div>
+            <label> مبلغ کل : </label>
+            <span></span>
+          </div>
+          <div>
+            <label> هزینه ارسال : </label>
+            <span>30000 تومان</span>
+          </div>
+          <div>
+            <label> ارزش افزوده : </label>
+            <span>%9</span>
+          </div>
+          <div>
+            <label> مبلغ قابل پرداخت : </label>
+            <span></span>
+          </div>
+        </section>
       </main>
       <footer class="footer">
         <nav>

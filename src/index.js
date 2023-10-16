@@ -58,17 +58,16 @@ function addToCart(product) {
       image: product.image,
       quantity: count + 1,
     });
-    cartIconCount.classList.add("cart-icon-count");
     cartCount += 1;
-    cartIconCount.textContent = cartCount;
   } else {
     const cartItem = cart.find((cartItem) => cartItem.id === product._id);
     cartItem.quantity += 1;
-    cartIconCount.classList.add("cart-icon-count");
     cartCount += 1;
-
-    cartIconCount.textContent = cartCount;
   }
+  cartIconCount.classList.add("cart-icon-count");
+  cartIconCount.textContent = cartCount;
+  const len = cart.length;
+  cart[len - 1].cartCount = cartCount;
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
@@ -83,4 +82,4 @@ async function render() {
 
 render();
 
-export { addToCart };
+export { addToCart, cartIconCount };

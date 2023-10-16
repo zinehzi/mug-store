@@ -1,5 +1,5 @@
 import { fetchProduct } from "./api/products.js";
-import { addToCart } from "./index.js";
+import { addToCart, cartIconCount } from "./index.js";
 
 const displayProductDetail = (product) => {
   const proDetailCont = document.getElementById("product-detail-container");
@@ -31,10 +31,22 @@ const displayProductDetail = (product) => {
   proDetailCont.appendChild(proDetailDesc);
 };
 
+function displayCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart) {
+    const len = cart.length;
+    cartIconCount.classList.add("cart-icon-count");
+    cartIconCount.textContent = cart[len - 1].cartCount;
+  }
+}
+
 async function render() {
-  const currProductItem = JSON.parse(localStorage.getItem("productItem"));
-  const product = await fetchProduct(currProductItem[0].id);
+  displayCartCount();
+  const productItem = JSON.parse(localStorage.getItem("productItem"));
+  const product = await fetchProduct(productItem[0].id);
   displayProductDetail(product);
 }
 
 render();
+
+export { displayCartCount };
