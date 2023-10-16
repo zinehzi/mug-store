@@ -1,23 +1,22 @@
 import { displayCartCount } from "./product-detail.js";
+import { clickToProductDetail } from "./index.js";
 
 const cartList = document.getElementById("cart-list");
 
 const displayCartList = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
-  for (let Item of cart) {
+  for (let item of cart) {
     const cartTr = document.createElement("tr");
 
     const cartTdImg = document.createElement("td");
     const cartImg = document.createElement("img");
-    cartImg.src = `../images/${Item.image}`;
+    cartImg.src = `../images/${item.image}`;
     cartTdImg.appendChild(cartImg);
-    cartImg.onclick = () => {
-      window.location.href = "/src/product-detail.html";
-    };
+    cartImg.onclick = () => clickToProductDetail(item);
 
     const cartTdTitle = document.createElement("td");
     const cartTitle = document.createElement("span");
-    cartTitle.textContent = `${Item.name}`;
+    cartTitle.textContent = `${item.name}`;
     cartTdTitle.appendChild(cartTitle);
 
     const cartTdCount = document.createElement("td");
@@ -26,7 +25,7 @@ const displayCartList = () => {
     const cartMinus = document.createElement("i");
     cartMinus.classList.add("fa", "fa-minus");
     const cartCount = document.createElement("span");
-    cartCount.textContent = `${Item.quantity}`;
+    cartCount.textContent = `${item.quantity}`;
     const cartPlus = document.createElement("i");
     cartPlus.classList.add("fa", "fa-plus");
 
@@ -37,12 +36,12 @@ const displayCartList = () => {
 
     const cartTdPrice = document.createElement("td");
     const cartPrice = document.createElement("span");
-    cartPrice.textContent = `${Item.price} تومان `;
+    cartPrice.textContent = `${item.price} تومان `;
     cartTdPrice.appendChild(cartPrice);
 
     const cartTdTotalPrice = document.createElement("td");
     const cartTotalPrice = document.createElement("span");
-    cartTotalPrice.textContent = `${Item.price} تومان `;
+    cartTotalPrice.textContent = `${item.price} تومان `;
     cartTdTotalPrice.appendChild(cartTotalPrice);
 
     const cartTdTrash = document.createElement("td");

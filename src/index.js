@@ -1,4 +1,5 @@
 import { fetchProducts } from "./api/products.js";
+import { displayCartCount } from "./product-detail.js";
 
 let cart = [];
 let productItem = [];
@@ -13,19 +14,10 @@ const displayProducts = (products) => {
   for (let product of products) {
     const productDiv = document.createElement("div");
     productDiv.className = "product";
-    const productLink = document.createElement("a");
-    productLink.target = "_blank";
     const productImg = document.createElement("Img");
     productImg.src = `../images/${product.image}`;
-    productLink.appendChild(productImg);
-    productLink.onclick = () => {
-      productItem = [];
-      productLink.href = "/src/product-detail.html";
-      productItem.push({
-        id: product._id,
-      });
-      localStorage.setItem("productItem", JSON.stringify(productItem));
-    };
+    productImg.onclick = () => clickToProductDetail(product);
+
     const productCaption = document.createElement("div");
     productCaption.className = "product-caption";
     const productTitle = document.createElement("span");
@@ -42,17 +34,26 @@ const displayProducts = (products) => {
     productBtn.onclick = () => addToCart(product);
     productCaption.appendChild(productTitle);
     productCaption.appendChild(productPrice);
-    productDiv.appendChild(productLink);
+    productDiv.appendChild(productImg);
     productDiv.appendChild(productCaption);
     productDiv.appendChild(productBtn);
     productList.appendChild(productDiv);
   }
 };
 
+function clickToProductDetail(product) {
+  productItem = [];
+  window.location.href = "/src/product-detail.html";
+  productItem.push({
+    id: product._id,
+  });
+  localStorage.setItem("productItem", JSON.stringify(productItem));
+}
+
 function addToCart(product) {
-  if (!cart.find((cartId) => cartId.id === product._id)) {
+  if (!cart.find((cartId) => cartId._id === product._id)) {
     cart.push({
-      id: product._id,
+      _id: product._id,
       name: product.name,
       price: product.price,
       image: product.image,
@@ -60,7 +61,7 @@ function addToCart(product) {
     });
     cartCount += 1;
   } else {
-    const cartItem = cart.find((cartItem) => cartItem.id === product._id);
+    const cartItem = cart.find((cartItem) => cartItem._id === product._id);
     cartItem.quantity += 1;
     cartCount += 1;
   }
@@ -76,10 +77,11 @@ cartIcon.addEventListener("click", () => {
 });
 
 async function render() {
+  displayCartCount();
   const products = await fetchProducts();
   displayProducts(products);
 }
 
 render();
 
-export { addToCart, cartIconCount };
+export { addToCart, cartIconCount, clickToProductDetail };
