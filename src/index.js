@@ -98,6 +98,5 @@ async function render() {
 }
 
 render();
-console.log(cart);
 
 export { addToCart, clickToProductDetail, displayCartCount };

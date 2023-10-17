@@ -1,9 +1,10 @@
 import { clickToProductDetail, displayCartCount } from "./index.js";
 
 const cartList = document.getElementById("cart-list");
-const cart = JSON.parse(localStorage.getItem("cart"));
 
 const displayCartList = () => {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  console.log(cart)
   for (let item of cart) {
     const cartTr = document.createElement("tr");
 
@@ -23,10 +24,38 @@ const displayCartList = () => {
     cartCountDiv.classList = "cart-count-div";
     const cartMinus = document.createElement("i");
     cartMinus.classList.add("fa", "fa-minus");
+    cartMinus.onclick = () => {
+      if (item.quantity > 1) {
+        item.quantity -= 1;
+      } else if (item.quantity === 1) {
+        console.log("item removed");
+      }
+      const len = cart.length;
+      const lastItem = cart[len - 1];
+      if (lastItem.cartCount > 0) {
+        lastItem.cartCount--;
+      } else if (lastItem.cartCount === 0) {
+        console.log("cart is empty");
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      cartList.innerHTML = "";
+      render();
+    };
+
     const cartCount = document.createElement("span");
     cartCount.textContent = `${item.quantity}`;
+
     const cartPlus = document.createElement("i");
     cartPlus.classList.add("fa", "fa-plus");
+    cartPlus.onclick = () => {
+      item.quantity += 1;
+      const len = cart.length;
+      const lastItem = cart[len - 1];
+      lastItem.cartCount++;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      cartList.innerHTML = "";
+      render();
+    };
 
     cartCountDiv.appendChild(cartMinus);
     cartCountDiv.appendChild(cartCount);
@@ -46,6 +75,18 @@ const displayCartList = () => {
     const cartTdTrash = document.createElement("td");
     const cartTrash = document.createElement("i");
     cartTrash.classList.add("fa", "fa-trash");
+    cartTrash.onclick = () => {
+      console.log("before", cart);
+      const itemId = item._id;
+      let newCart = cart.filter((item) => item._id !== itemId);
+      console.log(newCart);
+      cart = newCart;
+      console.log("after", cart);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      cartList.innerHTML = "";
+      render();
+    };
+
     cartTdTrash.appendChild(cartTrash);
 
     cartTr.appendChild(cartTdImg);
@@ -60,7 +101,7 @@ const displayCartList = () => {
 };
 
 function render() {
-  displayCartCount()
+  displayCartCount();
   displayCartList();
 }
 
