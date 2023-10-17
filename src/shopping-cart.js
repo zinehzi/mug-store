@@ -1,10 +1,9 @@
-import { displayCartCount } from "./product-detail.js";
-import { clickToProductDetail } from "./index.js";
+import { clickToProductDetail, displayCartCount } from "./index.js";
 
 const cartList = document.getElementById("cart-list");
+const cart = JSON.parse(localStorage.getItem("cart"));
 
 const displayCartList = () => {
-  const cart = JSON.parse(localStorage.getItem("cart"));
   for (let item of cart) {
     const cartTr = document.createElement("tr");
 
@@ -61,7 +60,7 @@ const displayCartList = () => {
 };
 
 function render() {
-  displayCartCount();
+  displayCartCount()
   displayCartList();
 }
 

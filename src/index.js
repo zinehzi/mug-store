@@ -1,10 +1,16 @@
 import { fetchProducts } from "./api/products.js";
-import { displayCartCount } from "./product-detail.js";
 
-let cart = [];
+if (localStorage.getItem("cart") == null) {
+  var cart = [];
+  var cartCount = 0;
+} else {
+  cart = JSON.parse(localStorage.getItem("cart"));
+  const len = cart.length;
+  cartCount = cart[len - 1].cartCount;
+}
+
 let productItem = [];
 let count = 0;
-let cartCount = 0;
 
 const productList = document.getElementById("product-list");
 const cartIcon = document.getElementById("cart-icon-container");
@@ -76,6 +82,15 @@ cartIcon.addEventListener("click", () => {
   window.location.href = "/src/shopping-cart.html";
 });
 
+function displayCartCount() {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart) {
+    const len = cart.length;
+    cartIconCount.classList.add("cart-icon-count");
+    cartIconCount.textContent = cart[len - 1].cartCount;
+  }
+}
+
 async function render() {
   displayCartCount();
   const products = await fetchProducts();
@@ -83,5 +98,6 @@ async function render() {
 }
 
 render();
+console.log(cart);
 
-export { addToCart, cartIconCount, clickToProductDetail };
+export { addToCart, clickToProductDetail, displayCartCount };
