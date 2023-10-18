@@ -3,9 +3,8 @@ import { clickToProductDetail, displayCartCount } from "./index.js";
 const cartList = document.getElementById("cart-list");
 
 const displayCartList = () => {
-  let cart = JSON.parse(localStorage.getItem("cart"));
-  console.log(cart)
-  for (let item of cart) {
+  let cartStorage = JSON.parse(localStorage.getItem("cart"));
+  for (let item of cartStorage) {
     const cartTr = document.createElement("tr");
 
     const cartTdImg = document.createElement("td");
@@ -30,14 +29,14 @@ const displayCartList = () => {
       } else if (item.quantity === 1) {
         console.log("item removed");
       }
-      const len = cart.length;
-      const lastItem = cart[len - 1];
+      const len = cartStorage.length;
+      const lastItem = cartStorage[len - 1];
       if (lastItem.cartCount > 0) {
         lastItem.cartCount--;
       } else if (lastItem.cartCount === 0) {
         console.log("cart is empty");
       }
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cartStorage));
       cartList.innerHTML = "";
       render();
     };
@@ -49,10 +48,10 @@ const displayCartList = () => {
     cartPlus.classList.add("fa", "fa-plus");
     cartPlus.onclick = () => {
       item.quantity += 1;
-      const len = cart.length;
-      const lastItem = cart[len - 1];
+      const len = cartStorage.length;
+      const lastItem = cartStorage[len - 1];
       lastItem.cartCount++;
-      localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cartStorage));
       cartList.innerHTML = "";
       render();
     };
@@ -76,13 +75,13 @@ const displayCartList = () => {
     const cartTrash = document.createElement("i");
     cartTrash.classList.add("fa", "fa-trash");
     cartTrash.onclick = () => {
-      console.log("before", cart);
+      console.log("before", cartStorage);
       const itemId = item._id;
-      let newCart = cart.filter((item) => item._id !== itemId);
+      let newCart = cartStorage.filter((item) => item._id !== itemId);
       console.log(newCart);
-      cart = newCart;
-      console.log("after", cart);
-      localStorage.setItem("cart", JSON.stringify(cart));
+      cartStorage = newCart;
+      console.log("after", cartStorage);
+      localStorage.setItem("cart", JSON.stringify(cartStorage));
       cartList.innerHTML = "";
       render();
     };

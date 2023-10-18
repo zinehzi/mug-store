@@ -312,3 +312,11 @@ a {
   align-items: center;
   justify-content: space-between;
 }
+
+/*responsive*/
+
+@media screen and (max-width: 1280px) {
+  .product-detail-container {
+    flex-direction: column;
+  }
+}

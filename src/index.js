@@ -1,14 +1,7 @@
 import { fetchProducts } from "./api/products.js";
 
-if (localStorage.getItem("cart") == null) {
-  var cart = [];
-  var cartCount = 0;
-} else {
-  cart = JSON.parse(localStorage.getItem("cart"));
-  const len = cart.length;
-  cartCount = cart[len - 1].cartCount;
-}
-
+let cart;
+let cartCount = 0;
 let productItem = [];
 let count = 0;
 
@@ -71,11 +64,11 @@ function addToCart(product) {
     cartItem.quantity += 1;
     cartCount += 1;
   }
-  cartIconCount.classList.add("cart-icon-count");
-  cartIconCount.textContent = cartCount;
   const len = cart.length;
-  cart[len - 1].cartCount = cartCount;
+  const lastItem = cart[len - 1];
+  lastItem.cartCount = cartCount;
   localStorage.setItem("cart", JSON.stringify(cart));
+  displayCartCount();
 }
 
 cartIcon.addEventListener("click", () => {
@@ -83,11 +76,16 @@ cartIcon.addEventListener("click", () => {
 });
 
 function displayCartCount() {
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  if (cart) {
+  const cartStorage = JSON.parse(localStorage.getItem("cart"));
+  if (!cartStorage) {
+    cart = [];
+  } else {
+    cart = cartStorage;
     const len = cart.length;
+    const lastItemCount = cart[len - 1].cartCount;
     cartIconCount.classList.add("cart-icon-count");
-    cartIconCount.textContent = cart[len - 1].cartCount;
+    cartIconCount.textContent = lastItemCount;
+    cartCount = lastItemCount;
   }
 }
 
