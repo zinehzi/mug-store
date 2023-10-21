@@ -1,4 +1,5 @@
 import { fetchProducts } from "./api/products.js";
+import { replaceNumWithComma } from "./global.js";
 
 let cart;
 let productItem = [];
@@ -21,7 +22,7 @@ const displayProducts = (products) => {
     const productTitle = document.createElement("span");
     productTitle.textContent = `${product.name}`;
     const productPrice = document.createElement("span");
-    productPrice.textContent = `${product.price} تومان`;
+    productPrice.textContent = replaceNumWithComma(product.price);
     const productBtn = document.createElement("button");
     productBtn.type = "button";
     productBtn.id = "btn";

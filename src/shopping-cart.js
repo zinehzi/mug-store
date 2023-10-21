@@ -1,4 +1,5 @@
 import { clickToProductDetail, displayCartCount } from "./index.js";
+import { replaceNumWithComma } from "./global.js";
 
 const cartList = document.getElementById("cart-list");
 const emptyCartText = document.getElementById("empty-cart");
@@ -57,12 +58,14 @@ const displayCartList = () => {
 
       const cartTdPrice = document.createElement("td");
       const cartPrice = document.createElement("span");
-      cartPrice.textContent = `${item.price} تومان `;
+      cartPrice.textContent = replaceNumWithComma(item.price);
       cartTdPrice.appendChild(cartPrice);
 
       const cartTdTotalPrice = document.createElement("td");
       const cartTotalPrice = document.createElement("span");
-      cartTotalPrice.textContent = `${item.price} تومان `;
+      cartTotalPrice.textContent = replaceNumWithComma(
+        item.price * item.quantity
+      );
       cartTdTotalPrice.appendChild(cartTotalPrice);
 
       const cartTdTrash = document.createElement("td");
