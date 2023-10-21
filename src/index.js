@@ -1,7 +1,6 @@
 import { fetchProducts } from "./api/products.js";
 
 let cart;
-let cartCount = 0;
 let productItem = [];
 let count = 0;
 
@@ -58,15 +57,10 @@ function addToCart(product) {
       image: product.image,
       quantity: count + 1,
     });
-    cartCount += 1;
   } else {
     const cartItem = cart.find((cartItem) => cartItem._id === product._id);
     cartItem.quantity += 1;
-    cartCount += 1;
   }
-  const len = cart.length;
-  const lastItem = cart[len - 1];
-  lastItem.cartCount = cartCount;
   localStorage.setItem("cart", JSON.stringify(cart));
   displayCartCount();
 }
@@ -83,11 +77,12 @@ function displayCartCount() {
     cartIconCount.classList.remove("cart-icon-count");
   } else {
     cart = cartStorage;
-    const len = cart.length;
-    const lastItemCount = cart[len - 1].cartCount;
+    let cartCount = 0;
+    for (let item of cart) {
+      cartCount += item.quantity;
+    }
+    cartIconCount.textContent = cartCount;
     cartIconCount.classList.add("cart-icon-count");
-    cartIconCount.textContent = lastItemCount;
-    cartCount = lastItemCount;
   }
 }
 

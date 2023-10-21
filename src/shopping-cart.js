@@ -1,107 +1,99 @@
 import { clickToProductDetail, displayCartCount } from "./index.js";
 
 const cartList = document.getElementById("cart-list");
+const emptyCartText = document.getElementById("empty-cart");
+const cartCalcBox = document.getElementById("cart-calc");
 
 const displayCartList = () => {
   let cartStorage = JSON.parse(localStorage.getItem("cart"));
-  for (let item of cartStorage) {
-    const cartTr = document.createElement("tr");
+  if (!cartStorage || cartStorage.length === 0) {
+    emptyCartText.classList.add("active");
+  } else {
+    for (let item of cartStorage) {
+      const cartTr = document.createElement("tr");
 
-    const cartTdImg = document.createElement("td");
-    const cartImg = document.createElement("img");
-    cartImg.src = `../images/${item.image}`;
-    cartTdImg.appendChild(cartImg);
-    cartImg.onclick = () => clickToProductDetail(item);
+      const cartTdImg = document.createElement("td");
+      const cartImg = document.createElement("img");
+      cartImg.src = `../images/${item.image}`;
+      cartTdImg.appendChild(cartImg);
+      cartImg.onclick = () => clickToProductDetail(item);
 
-    const cartTdTitle = document.createElement("td");
-    const cartTitle = document.createElement("span");
-    cartTitle.textContent = `${item.name}`;
-    cartTdTitle.appendChild(cartTitle);
+      const cartTdTitle = document.createElement("td");
+      const cartTitle = document.createElement("span");
+      cartTitle.textContent = `${item.name}`;
+      cartTdTitle.appendChild(cartTitle);
 
-    const cartTdCount = document.createElement("td");
-    const cartCountDiv = document.createElement("div");
-    cartCountDiv.classList = "cart-count-div";
-    const cartMinus = document.createElement("i");
-    cartMinus.classList.add("fa", "fa-minus");
-    cartMinus.onclick = () => {
-      if (item.quantity > 1) {
-        item.quantity -= 1;
-      } else if (item.quantity === 1) {
-        console.log("item removed");
-      }
-      const len = cartStorage.length;
-      const lastItem = cartStorage[len - 1];
-      if (lastItem.cartCount > 0) {
-        lastItem.cartCount--;
-      } else if (lastItem.cartCount === 0) {
-        console.log("cart is empty");
-      }
-      localStorage.setItem("cart", JSON.stringify(cartStorage));
-      cartList.innerHTML = "";
-      render();
-    };
+      const cartTdCount = document.createElement("td");
+      const cartCountDiv = document.createElement("div");
+      cartCountDiv.classList = "cart-count-div";
+      const cartMinus = document.createElement("i");
+      cartMinus.classList.add("fa", "fa-minus");
+      cartMinus.onclick = () => {
+        if (item.quantity > 1) {
+          item.quantity -= 1;
+          localStorage.setItem("cart", JSON.stringify(cartStorage));
+          cartList.innerHTML = "";
+          render();
+        } else {
+          removeFromCart(item, cartStorage);
+        }
+      };
 
-    const cartCount = document.createElement("span");
-    cartCount.textContent = `${item.quantity}`;
+      const cartCount = document.createElement("span");
+      cartCount.textContent = `${item.quantity}`;
+      const cartPlus = document.createElement("i");
+      cartPlus.classList.add("fa", "fa-plus");
+      cartPlus.onclick = () => {
+        item.quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(cartStorage));
+        cartList.innerHTML = "";
+        render();
+      };
 
-    const cartPlus = document.createElement("i");
-    cartPlus.classList.add("fa", "fa-plus");
-    cartPlus.onclick = () => {
-      item.quantity += 1;
-      const len = cartStorage.length;
-      const lastItem = cartStorage[len - 1];
-      lastItem.cartCount++;
-      localStorage.setItem("cart", JSON.stringify(cartStorage));
-      cartList.innerHTML = "";
-      render();
-    };
+      cartCountDiv.appendChild(cartMinus);
+      cartCountDiv.appendChild(cartCount);
+      cartCountDiv.appendChild(cartPlus);
+      cartTdCount.appendChild(cartCountDiv);
 
-    cartCountDiv.appendChild(cartMinus);
-    cartCountDiv.appendChild(cartCount);
-    cartCountDiv.appendChild(cartPlus);
-    cartTdCount.appendChild(cartCountDiv);
+      const cartTdPrice = document.createElement("td");
+      const cartPrice = document.createElement("span");
+      cartPrice.textContent = `${item.price} تومان `;
+      cartTdPrice.appendChild(cartPrice);
 
-    const cartTdPrice = document.createElement("td");
-    const cartPrice = document.createElement("span");
-    cartPrice.textContent = `${item.price} تومان `;
-    cartTdPrice.appendChild(cartPrice);
+      const cartTdTotalPrice = document.createElement("td");
+      const cartTotalPrice = document.createElement("span");
+      cartTotalPrice.textContent = `${item.price} تومان `;
+      cartTdTotalPrice.appendChild(cartTotalPrice);
 
-    const cartTdTotalPrice = document.createElement("td");
-    const cartTotalPrice = document.createElement("span");
-    cartTotalPrice.textContent = `${item.price} تومان `;
-    cartTdTotalPrice.appendChild(cartTotalPrice);
+      const cartTdTrash = document.createElement("td");
+      const cartTrash = document.createElement("i");
+      cartTrash.classList.add("fa", "fa-trash");
+      cartTrash.onclick = () => removeFromCart(cartStorage, item);
 
-    const cartTdTrash = document.createElement("td");
-    const cartTrash = document.createElement("i");
-    cartTrash.classList.add("fa", "fa-trash");
-    cartTrash.onclick = () => {
-      console.log("before", cartStorage);
-      // if (cartStorage.length === 1) {
-      //   cartStorage.cartCount = cartStorage.quantity;
-      // }
+      cartTdTrash.appendChild(cartTrash);
 
-      const itemId = item._id;
-      let newCart = cartStorage.filter((item) => item._id !== itemId);
-      console.log(newCart);
-      cartStorage = newCart;
-      console.log("after", cartStorage);
-      localStorage.setItem("cart", JSON.stringify(cartStorage));
-      cartList.innerHTML = "";
-      render();
-    };
+      cartTr.appendChild(cartTdImg);
+      cartTr.appendChild(cartTdTitle);
+      cartTr.appendChild(cartTdCount);
+      cartTr.appendChild(cartTdPrice);
+      cartTr.appendChild(cartTdTotalPrice);
+      cartTr.appendChild(cartTdTrash);
 
-    cartTdTrash.appendChild(cartTrash);
+      cartList.appendChild(cartTr);
 
-    cartTr.appendChild(cartTdImg);
-    cartTr.appendChild(cartTdTitle);
-    cartTr.appendChild(cartTdCount);
-    cartTr.appendChild(cartTdPrice);
-    cartTr.appendChild(cartTdTotalPrice);
-    cartTr.appendChild(cartTdTrash);
-
-    cartList.appendChild(cartTr);
+      cartCalcBox.classList.add("active");
+    }
   }
 };
+
+function removeFromCart(cartStorage, item) {
+  const itemId = item._id;
+  let newCart = cartStorage.filter((item) => item._id !== itemId);
+  cartStorage = newCart;
+  localStorage.setItem("cart", JSON.stringify(cartStorage));
+  cartList.innerHTML = "";
+  render();
+}
 
 function render() {
   displayCartCount();

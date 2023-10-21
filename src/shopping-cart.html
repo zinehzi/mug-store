@@ -48,10 +48,19 @@
               <th>قیمت کل</th>
               <th></th>
             </thead>
-            <tbody id="cart-list" class="cart-list"></tbody>
+            <tbody id="cart-list" class="cart-list">
+              <tr id="empty-cart" class="empty-cart">
+                <td colspan="10">
+                  <div>
+                    سبد خرید خالی است.<br />
+                    هیچ آیتمی جهت نمایش وجود ندارد.
+                  </div>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </section>
-        <section class="cart-calc">
+        <section id="cart-calc" class="cart-calc">
           <div>
             <label> مبلغ کل : </label>
             <span></span>
