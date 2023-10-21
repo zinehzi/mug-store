@@ -10,6 +10,7 @@ const displayCartList = () => {
   if (!cartStorage || cartStorage.length === 0) {
     emptyCartText.classList.add("active");
   } else {
+    let cartFinalPrice = 0;
     for (let item of cartStorage) {
       const cartTr = document.createElement("tr");
 
@@ -85,18 +86,26 @@ const displayCartList = () => {
       cartList.appendChild(cartTr);
 
       cartCalcBox.classList.add("active");
+
+      cartFinalPrice += item.price * item.quantity;
+      const firstElem = cartCalcBox.firstElementChild.lastElementChild;
+      firstElem.textContent = replaceNumWithComma(cartFinalPrice);
+      const lastElem = cartCalcBox.lastElementChild.lastElementChild;
+      const cartFinalTax = (cartFinalPrice + 30000) * 0.09;
+      const cartPaidPrice = cartFinalPrice + cartFinalTax;
+      lastElem.textContent = replaceNumWithComma(cartPaidPrice);
     }
   }
 };
 
-function removeFromCart(cartStorage, item) {
-  const itemId = item._id;
-  let newCart = cartStorage.filter((item) => item._id !== itemId);
-  cartStorage = newCart;
-  localStorage.setItem("cart", JSON.stringify(cartStorage));
-  cartList.innerHTML = "";
-  render();
-}
+// function removeFromCart(cartStorage, item) {
+//   const itemId = item._id;ّ
+//   let newCart = cartStorage.filter((item) => item._id !== itemId);
+//   cartStorage = newCart;
+//   localStorage.setItem("cart", JSON.stringify(cartStorage));
+//   cartList.innerHTML = "";
+//   render();
+// }
 
 function render() {
   displayCartCount();
