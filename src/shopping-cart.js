@@ -76,6 +76,10 @@ const displayCartList = () => {
     cartTrash.classList.add("fa", "fa-trash");
     cartTrash.onclick = () => {
       console.log("before", cartStorage);
+      // if (cartStorage.length === 1) {
+      //   cartStorage.cartCount = cartStorage.quantity;
+      // }
+
       const itemId = item._id;
       let newCart = cartStorage.filter((item) => item._id !== itemId);
       console.log(newCart);

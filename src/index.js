@@ -77,8 +77,10 @@ cartIcon.addEventListener("click", () => {
 
 function displayCartCount() {
   const cartStorage = JSON.parse(localStorage.getItem("cart"));
-  if (!cartStorage) {
+  if (!cartStorage || cartStorage.length === 0) {
     cart = [];
+    cartIconCount.textContent = "";
+    cartIconCount.classList.remove("cart-icon-count");
   } else {
     cart = cartStorage;
     const len = cart.length;
