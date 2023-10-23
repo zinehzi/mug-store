@@ -318,17 +318,14 @@ a {
   justify-content: space-between;
 }
 
-.empty-cart {
-  display: none;
-}
 
 .empty-cart td {
   border: none !important;
 }
 
-.empty-cart.active {
+/* .empty-cart.active {
   display: table-row;
-}
+} */
 
 /*responsive*/
 

@@ -2,13 +2,12 @@ import { clickToProductDetail, displayCartCount } from "./index.js";
 import { replaceNumWithComma } from "./global.js";
 
 const cartList = document.getElementById("cart-list");
-const emptyCartText = document.getElementById("empty-cart");
 const cartCalcBox = document.getElementById("cart-calc");
 
 const displayCartList = () => {
   let cartStorage = JSON.parse(localStorage.getItem("cart"));
   if (!cartStorage || cartStorage.length === 0) {
-    emptyCartText.classList.add("active");
+    showEmptyMessage();
   } else {
     let cartFinalPrice = 0;
     for (let item of cartStorage) {
@@ -33,11 +32,9 @@ const displayCartList = () => {
       cartMinus.onclick = () => {
         if (item.quantity > 1) {
           item.quantity -= 1;
-          localStorage.setItem("cart", JSON.stringify(cartStorage));
-          cartList.innerHTML = "";
-          render();
+          setToLocalStorage(cartStorage);
         } else {
-          removeFromCart(item, cartStorage);
+          removeFromCart(cartStorage, item);
         }
       };
 
@@ -47,9 +44,7 @@ const displayCartList = () => {
       cartPlus.classList.add("fa", "fa-plus");
       cartPlus.onclick = () => {
         item.quantity += 1;
-        localStorage.setItem("cart", JSON.stringify(cartStorage));
-        cartList.innerHTML = "";
-        render();
+        setToLocalStorage(cartStorage);
       };
 
       cartCountDiv.appendChild(cartMinus);
@@ -64,15 +59,15 @@ const displayCartList = () => {
 
       const cartTdTotalPrice = document.createElement("td");
       const cartTotalPrice = document.createElement("span");
-      cartTotalPrice.textContent = replaceNumWithComma(
-        item.price * item.quantity
-      );
+      const totalPrice = item.price * item.quantity;
+      cartTotalPrice.textContent = replaceNumWithComma(totalPrice);
       cartTdTotalPrice.appendChild(cartTotalPrice);
 
       const cartTdTrash = document.createElement("td");
       const cartTrash = document.createElement("i");
       cartTrash.classList.add("fa", "fa-trash");
-      cartTrash.onclick = () => removeFromCart(cartStorage, item);
+      cartTrash.onclick = () =>
+        removeFromCart(cartStorage, item, cartFinalPrice);
 
       cartTdTrash.appendChild(cartTrash);
 
@@ -87,25 +82,41 @@ const displayCartList = () => {
 
       cartCalcBox.classList.add("active");
 
-      cartFinalPrice += item.price * item.quantity;
+      cartFinalPrice += totalPrice;
       const firstElem = cartCalcBox.firstElementChild.lastElementChild;
       firstElem.textContent = replaceNumWithComma(cartFinalPrice);
       const lastElem = cartCalcBox.lastElementChild.lastElementChild;
-      const cartFinalTax = (cartFinalPrice + 30000) * 0.09;
-      const cartPaidPrice = cartFinalPrice + cartFinalTax;
+      const cartPaidPrice = Math.round((cartFinalPrice + 30000) * 1.09);
       lastElem.textContent = replaceNumWithComma(cartPaidPrice);
     }
   }
 };
 
-// function removeFromCart(cartStorage, item) {
-//   const itemId = item._id;ّ
-//   let newCart = cartStorage.filter((item) => item._id !== itemId);
-//   cartStorage = newCart;
-//   localStorage.setItem("cart", JSON.stringify(cartStorage));
-//   cartList.innerHTML = "";
-//   render();
-// }
+function removeFromCart(cartStorage, item, cartFinalPrice) {
+  const itemId = item._id;
+  let newCart = cartStorage.filter((item) => item._id !== itemId);
+  cartStorage = newCart;
+  setToLocalStorage(cartStorage);
+  if (!cartStorage || cartStorage.length === 0) {
+    cartCalcBox.classList.remove("active");
+  }
+}
+
+function setToLocalStorage(cartStorage) {
+  localStorage.setItem("cart", JSON.stringify(cartStorage));
+  cartList.innerHTML = "";
+  render();
+}
+
+function showEmptyMessage() {
+  const cartTr = document.createElement("tr");
+  cartTr.classList.add("empty-cart");
+  const cartTd = document.createElement("td");
+  cartTd.colSpan = "10";
+  cartTd.textContent = "سبد خرید خالی است.";
+  cartTr.appendChild(cartTd);
+  cartList.appendChild(cartTr);
+}
 
 function render() {
   displayCartCount();
