@@ -79,12 +79,13 @@ body {
 .search-bar i {
   font-size: 20px;
 }
-.search-bar input {
+
+ input {
   border: 1px solid #dbdbdb;
   border-radius: 5px;
   width: 100%;
-  height: 35px;
   padding: 5px;
+  font-family: vazir;
 }
 
 .cart-icon-container {
@@ -124,12 +125,17 @@ body {
   background-repeat: no-repeat; */
 }
 
-.shopping-cart .main {
+.shopping-cart .main,
+.delivery .main {
   padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+}
+
+.delivery .main {
+  align-items: flex-start;
 }
 
 .main-content {
@@ -273,7 +279,7 @@ a {
 .cart-container table td {
   text-align: center;
   border: 1px solid #e7e7e7;
-  padding: 30px;
+  padding: 50px;
 }
 
 .cart-list td img {
@@ -318,17 +324,59 @@ a {
   justify-content: space-between;
 }
 
-
-.empty-cart td {
-  border: none !important;
+.cart-btn-container {
+  align-self: flex-end;
 }
 
-/* .empty-cart.active {
-  display: table-row;
-} */
+.cart-btn,
+.add-address {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  color: white;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 5px;
+  font-family: "vazir";
+  cursor: pointer;
+}
+
+.delivery-btn {
+  display: flex;
+}
+.cart-btn.active {
+  display: flex;
+}
+
+.address-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.add-address {
+  display: flex;
+  gap: 10px;
+  padding: 5px 15px;
+}
+
+.address-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 3px;
+}
+
+.address-container form div {
+  display: flex;
+  justify-content: space-between;
+}
 
 /*responsive*/
-
 @media screen and (max-width: 1280px) {
   .product-detail-container {
     flex-direction: column;

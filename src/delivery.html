@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container shopping-cart">
+    <div class="container delivery">
       <header class="header">
         <menu class="menu">
           <ul>
@@ -38,40 +38,56 @@
         </div>
       </header>
       <main class="main">
-        <section id="cart-container" class="cart-container">
-          <table>
-            <thead>
-              <th></th>
-              <th>عنوان</th>
-              <th>تعداد</th>
-              <th>قیمت واحد</th>
-              <th>قیمت کل</th>
-              <th></th>
-            </thead>
-            <tbody id="cart-list" class="cart-list"></tbody>
-          </table>
+        <section>
+          <div class="address-container">
+            <button type="button" class="add-address">
+              <i class="fa fa-plus"></i>
+              افزودن
+            </button>
+            <form>
+              <div>
+                <label>عنوان آدرس :</label>
+                <input type="text" />
+              </div>
+              <div>
+                <label>نام و نام خانوادگی تحویل گیرنده :</label>
+                <input type="text" />
+              </div>
+              <div>
+                <label>استان :</label>
+                <select>
+                  <option>تهران</option>
+                  <option>البرز</option>
+                  <option>شیراز</option>
+                  <option>اصفهان</option>
+                  <option>یزد</option>
+                </select>
+              </div>
+              <div>
+                <label>شهر :</label>
+                <select>
+                  <option>تهران</option>
+                  <option>البرز</option>
+                  <option>شیراز</option>
+                  <option>اصفهان</option>
+                  <option>یزد</option>
+                </select>
+              </div>
+              <div>
+                <label>آدرس :</label>
+                <textarea
+                  placeholder="لطفا آدرس را بطور کامل وارد نمایید..."
+                ></textarea>
+              </div>
+              <div>نقشه تهران</div>
+              <button type="submit">ثبت اطلاعات</button>
+            </form>
+          </div>
         </section>
-        <section id="cart-calc" class="cart-calc">
-          <div>
-            <label> مبلغ کل : </label>
-            <span></span>
-          </div>
-          <div>
-            <label> هزینه ارسال : </label>
-            <span>+ 30,000 تومان</span>
-          </div>
-          <div>
-            <label> ارزش افزوده : </label>
-            <span>+ %9</span>
-          </div>
-          <div>
-            <label> مبلغ قابل پرداخت : </label>
-            <span></span>
-          </div>
-        </section>
+        <section>لیست نهای محصولات</section>
         <section class="cart-btn-container">
-          <button type="button" id="cart-btn" class="cart-btn">
-            تایید و ادامه
+          <button type="button" class="cart-btn delivery-btn">
+            تایید و پرداخت
           </button>
         </section>
       </main>
@@ -91,6 +107,6 @@
       </footer>
     </div>
 
-    <script type="module" src="shopping-cart.js"></script>
+    <script type="module" src="delivery.js"></script>
   </body>
 </html>

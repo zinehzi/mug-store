@@ -3,6 +3,7 @@ import { replaceNumWithComma } from "./global.js";
 
 const cartList = document.getElementById("cart-list");
 const cartCalcBox = document.getElementById("cart-calc");
+const cartBtn = document.getElementById("cart-btn");
 
 const displayCartList = () => {
   let cartStorage = JSON.parse(localStorage.getItem("cart"));
@@ -81,6 +82,10 @@ const displayCartList = () => {
       cartList.appendChild(cartTr);
 
       cartCalcBox.classList.add("active");
+      cartBtn.classList.add("active");
+      cartBtn.onclick = () => {
+        window.location.href = "/src/delivery.html";
+      };
 
       cartFinalPrice += totalPrice;
       const firstElem = cartCalcBox.firstElementChild.lastElementChild;
@@ -99,6 +104,7 @@ function removeFromCart(cartStorage, item, cartFinalPrice) {
   setToLocalStorage(cartStorage);
   if (!cartStorage || cartStorage.length === 0) {
     cartCalcBox.classList.remove("active");
+    cartBtn.classList.remove("active");
   }
 }
 
