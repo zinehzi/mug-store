@@ -89,24 +89,33 @@ body {
 }
 
 input[type="text"],
+input[type="number"],
 select,
 textarea {
   border: 1px solid #dbdbdb;
   border-radius: 5px;
-  padding: 5px 8px 5px 30px;
+  padding: 5px 8px 5px 0;
+}
+
+.search-bar input {
+  padding-left: 30px;
 }
 
 label {
   text-wrap: nowrap;
 }
 
-.select {
+select {
   cursor: pointer;
 }
 
-.address-form select,
-.address-form textarea,
-.address-form input {
+textarea {
+  resize: vertical;
+}
+
+.address-container select,
+.address-container textarea,
+.address-container input {
   width: 60%;
 }
 
@@ -298,6 +307,7 @@ a {
   text-align: center;
   border: 1px solid #e7e7e7;
   padding: 50px;
+  text-wrap: nowrap;
 }
 
 .cart-list td img {
@@ -345,7 +355,7 @@ a {
 
 .cart-btn-container,
 .delivery-btn-container {
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .cart-btn,
@@ -382,14 +392,43 @@ a {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 40%;
+  align-self: center;
+}
+
+.address-show {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.address-list {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0px 0px 12px 3px #efefef;
+  border-radius: 30px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.address-item i {
+  color: green;
+  font-size: 16px;
 }
 
 .address-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  align-self: center;
   padding: 20px;
+  width: 40%;
   box-shadow: 0px 0px 12px 3px #efefef;
 }
 

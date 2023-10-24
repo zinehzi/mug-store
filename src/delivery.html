@@ -38,62 +38,97 @@
         </div>
       </header>
       <main class="main">
-        <section>
-          <div class="address-container">
+        <section class="address-container">
+          <div class="address-show">
             <button type="button" class="btn address-btn">
               <i class="fa fa-plus"></i>
               افزودن آدرس جدید
             </button>
-            <div class="address-form">
-              <div>
-                <label>عنوان آدرس :</label>
-                <input type="text" placeholder="منزل، محل کار..."/>
-              </div>
-              <div>
-                <label>مشخصات تحویل گیرنده :</label>
-                <input type="text" placeholder="نام و نام خانوادگی..." />
-              </div>
-              <div>
-                <label>استان :</label>
-                <select>
-                  <option>تهران</option>
-                  <option>البرز</option>
-                  <option>شیراز</option>
-                  <option>اصفهان</option>
-                  <option>یزد</option>
-                </select>
-              </div>
-              <div>
-                <label>شهر :</label>
-                <select>
-                  <option>تهران</option>
-                  <option>البرز</option>
-                  <option>شیراز</option>
-                  <option>اصفهان</option>
-                  <option>یزد</option>
-                </select>
-              </div>
-              <div>
-                <label>آدرس :</label>
-                <textarea rows="5"
-                  placeholder="لطفا آدرس را بطور کامل وارد نمایید..."
-                ></textarea>
-              </div>
-              <div>
-                <label> کدپستی :</label>
-                <input type="text" placeholder="10 رقم کامل..." />
-              </div>
-
-              <div>نقشه تهران</div>
-              <button type="button" class="btn address-form-btn">ثبت اطلاعات</button>
-            </div>
+            <div id="address-list" class="address-list"></div>
           </div>
+
+          <form id="address-form" class="address-form">
+            <div>
+              <label>عنوان آدرس :</label>
+              <input
+                type="text"
+                placeholder="منزل، محل کار..."
+                id="address-title"
+              />
+            </div>
+            <div>
+              <label>مشخصات تحویل گیرنده :</label>
+              <input
+                type="text"
+                placeholder="نام و نام خانوادگی..."
+                id="address-getter"
+              />
+            </div>
+            <div>
+              <label>شماره همراه تحویل گیرنده :</label>
+              <input
+                type="number"
+                placeholder="شماره همراه..."
+                id="mobile-getter"
+              />
+            </div>
+
+            <div>
+              <label>استان :</label>
+              <select id="address-state">
+                <option>تهران</option>
+                <option>البرز</option>
+                <option>شیراز</option>
+                <option>اصفهان</option>
+                <option>یزد</option>
+              </select>
+            </div>
+            <div>
+              <label>شهر :</label>
+              <select id="address-city">
+                <option>تهران</option>
+                <option>البرز</option>
+                <option>شیراز</option>
+                <option>اصفهان</option>
+                <option>یزد</option>
+              </select>
+            </div>
+            <div>
+              <label>آدرس :</label>
+              <textarea
+                rows="5"
+                placeholder="لطفا آدرس را بطور کامل وارد نمایید..."
+                id="full-address"
+              ></textarea>
+            </div>
+            <div>
+              <label> کدپستی :</label>
+              <input
+                type="number"
+                placeholder="10 رقم کامل..."
+                id="address-postal"
+              />
+            </div>
+
+            <div>
+              <label> به عنوان آدرس پیش فرض انتخاب شود؟</label>
+              <input
+                type="checkbox"
+                id="default-address"
+                value="false"
+              />
+            </div>
+            <button
+              type="button"
+              id="address-form-btn"
+              class="btn address-form-btn"
+            >
+              ثبت اطلاعات
+            </button>
+          </form>
         </section>
-        <section>لیست نهایی محصولات</section>
         <section class="delivery-btn-container">
-          <button type="button" class="btn delivery-btn">
-            تایید و پرداخت
-          </button>
+          <button type="button" class="btn delivery-btn">تایید و پرداخت</button>
         </section>
       </main>
       <footer class="footer">
