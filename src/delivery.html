@@ -28,7 +28,7 @@
         <div class="left-bar">
           <div class="search-bar">
             <i class="fa fa-search"></i>
-            <input type="" placeholder="عبارت موردنظر را جستجو کنید..." />
+            <input type="text" placeholder="عبارت موردنظر را جستجو کنید..." />
           </div>
           <div id="cart-icon-container" class="cart-icon-container">
             <i id="cart-icon" class="fa fa-shopping-cart"></i>
@@ -40,18 +40,18 @@
       <main class="main">
         <section>
           <div class="address-container">
-            <button type="button" class="add-address">
+            <button type="button" class="btn address-btn">
               <i class="fa fa-plus"></i>
-              افزودن
+              افزودن آدرس جدید
             </button>
-            <form>
+            <div class="address-form">
               <div>
                 <label>عنوان آدرس :</label>
-                <input type="text" />
+                <input type="text" placeholder="منزل، محل کار..."/>
               </div>
               <div>
-                <label>نام و نام خانوادگی تحویل گیرنده :</label>
-                <input type="text" />
+                <label>مشخصات تحویل گیرنده :</label>
+                <input type="text" placeholder="نام و نام خانوادگی..." />
               </div>
               <div>
                 <label>استان :</label>
@@ -75,18 +75,23 @@
               </div>
               <div>
                 <label>آدرس :</label>
-                <textarea
+                <textarea rows="5"
                   placeholder="لطفا آدرس را بطور کامل وارد نمایید..."
                 ></textarea>
               </div>
+              <div>
+                <label> کدپستی :</label>
+                <input type="text" placeholder="10 رقم کامل..." />
+              </div>
+
               <div>نقشه تهران</div>
-              <button type="submit">ثبت اطلاعات</button>
-            </form>
+              <button type="button" class="btn address-form-btn">ثبت اطلاعات</button>
+            </div>
           </div>
         </section>
-        <section>لیست نهای محصولات</section>
-        <section class="cart-btn-container">
-          <button type="button" class="cart-btn delivery-btn">
+        <section>لیست نهایی محصولات</section>
+        <section class="delivery-btn-container">
+          <button type="button" class="btn delivery-btn">
             تایید و پرداخت
           </button>
         </section>

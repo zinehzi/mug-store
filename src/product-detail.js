@@ -15,7 +15,7 @@ const displayProductDetail = (product) => {
   proDetailCaption.appendChild(proDetailPrice);
   const productDetailBtn = document.createElement("button");
   productDetailBtn.type = "button";
-  productDetailBtn.id = "btn";
+  productDetailBtn.className = "btn";
   productDetailBtn.textContent = "افزودن به سبد خرید";
   const buttonIcon = document.createElement("i");
   buttonIcon.classList.add("fa", "fa-shopping-cart");

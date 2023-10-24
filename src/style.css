@@ -30,8 +30,11 @@ html,
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   height: 100%;
+}
+
+* {
+  box-sizing: border-box;
   font-family: vazir;
   font-weight: 400;
 }
@@ -65,27 +68,46 @@ body {
   text-decoration: none;
 }
 
+.logo {
+  font-weight: 600;
+}
+
 .left-bar {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
 }
 .search-bar {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-left: 2rem;
 }
 
 .search-bar i {
   font-size: 20px;
 }
 
- input {
+input[type="text"],
+select,
+textarea {
   border: 1px solid #dbdbdb;
   border-radius: 5px;
-  width: 100%;
-  padding: 5px;
-  font-family: vazir;
+  padding: 5px 8px 5px 30px;
+}
+
+label {
+  text-wrap: nowrap;
+}
+
+.select {
+  cursor: pointer;
+}
+
+.address-form select,
+.address-form textarea,
+.address-form input {
+  width: 60%;
 }
 
 .cart-icon-container {
@@ -114,16 +136,11 @@ body {
   color: #0075ff;
   cursor: pointer;
 }
-.slide-show img {
+
+/* .slide-show img {
   width: 100%;
   height: 200px;
-}
-.main {
-  display: flex;
-  /* background-image: url("./images/slider-2.jpg");
-  background-size: cover;
-  background-repeat: no-repeat; */
-}
+} */
 
 .shopping-cart .main,
 .delivery .main {
@@ -131,31 +148,27 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 }
 
-.delivery .main {
-  align-items: flex-start;
-}
-
-.main-content {
+section {
   display: flex;
-  gap: 20px;
+  width: 100%;
 }
 
 .filter-bar {
   display: flex;
   flex-direction: column;
-  flex-basis: 500px;
-  gap: 40px;
-  padding: 30px 10px;
+  flex-basis: 600px;
+  gap: 30px;
+  padding: 20px;
   box-shadow: 0px 2px 6px #efefef;
 }
 
 .filter-bar > div {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 .filter-bar .price > label,
@@ -167,7 +180,13 @@ body {
 .filter-bar .style > div {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+}
+
+input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
 }
 
 .filter-bar .style > div label {
@@ -223,14 +242,14 @@ a {
   justify-content: space-between;
   align-items: center;
 }
-.product button,
-.products-detail-caption button {
-  cursor: pointer;
-  padding: 10px;
+
+.btn {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
+  padding: 8px 10px;
 }
 
 .product-detail-container {
@@ -260,7 +279,6 @@ a {
 
 .cart-container,
 .cart-calc {
-  width: 100%;
   padding: 30px;
   box-shadow: 0px 0px 12px 3px #efefef;
 }
@@ -297,6 +315,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 10px;
   border: 2px solid #e7e7e7;
   border-radius: 3px;
   padding: 3px;
@@ -309,7 +328,7 @@ a {
 .cart-calc {
   display: none;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   align-self: flex-end;
   width: 30%;
 }
@@ -324,27 +343,37 @@ a {
   justify-content: space-between;
 }
 
-.cart-btn-container {
-  align-self: flex-end;
+.cart-btn-container,
+.delivery-btn-container {
+  justify-content: end;
 }
 
 .cart-btn,
-.add-address {
-  display: none;
-  justify-content: center;
-  align-items: center;
+.address-btn,
+.delivery-btn {
   background-color: green;
   color: white;
-  padding: 10px 50px;
   border: none;
-  border-radius: 5px;
-  font-family: "vazir";
-  cursor: pointer;
+  border-radius: 3px;
+  padding: 10px 50px;
+  align-self: flex-start;
 }
 
-.delivery-btn {
-  display: flex;
+.cart-btn:hover,
+.address-btn:hover,
+.delivery-btn:hover {
+  background-color: rgb(1, 119, 1);
+  transition: 0.5s;
 }
+
+.address-btn {
+  padding: 10px 20px;
+}
+
+.cart-btn {
+  display: none;
+}
+
 .cart-btn.active {
   display: flex;
 }
@@ -353,27 +382,22 @@ a {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  align-items: flex-start;
+  width: 40%;
 }
 
-.add-address {
-  display: flex;
-  gap: 10px;
-  padding: 5px 15px;
-}
-
-.address-container form {
+.address-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  border: 1px solid gray;
   padding: 20px;
-  border-radius: 3px;
+  box-shadow: 0px 0px 12px 3px #efefef;
 }
 
-.address-container form div {
+.address-form > div {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 30px;
 }
 
 /*responsive*/

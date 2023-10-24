@@ -25,7 +25,7 @@ const displayProducts = (products) => {
     productPrice.textContent = replaceNumWithComma(product.price);
     const productBtn = document.createElement("button");
     productBtn.type = "button";
-    productBtn.id = "btn";
+    productBtn.className = "btn";
     productBtn.textContent = "افزودن به سبد خرید";
     const buttonIcon = document.createElement("i");
     buttonIcon.classList.add("fa", "fa-shopping-cart");
@@ -95,4 +95,4 @@ async function render() {
 
 render();
 
-export { addToCart, clickToProductDetail, displayCartCount };
+export { addToCart, clickToProductDetail, displayCartCount, cartIcon};

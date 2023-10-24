@@ -68,7 +68,7 @@ const displayCartList = () => {
       const cartTrash = document.createElement("i");
       cartTrash.classList.add("fa", "fa-trash");
       cartTrash.onclick = () =>
-        removeFromCart(cartStorage, item, cartFinalPrice);
+        removeFromCart(cartStorage, item);
 
       cartTdTrash.appendChild(cartTrash);
 
@@ -97,7 +97,7 @@ const displayCartList = () => {
   }
 };
 
-function removeFromCart(cartStorage, item, cartFinalPrice) {
+function removeFromCart(cartStorage, item) {
   const itemId = item._id;
   let newCart = cartStorage.filter((item) => item._id !== itemId);
   cartStorage = newCart;
@@ -119,7 +119,7 @@ function showEmptyMessage() {
   cartTr.classList.add("empty-cart");
   const cartTd = document.createElement("td");
   cartTd.colSpan = "10";
-  cartTd.textContent = "سبد خرید خالی است.";
+  cartTd.textContent = "سبد خرید شما خالی است.";
   cartTr.appendChild(cartTd);
   cartList.appendChild(cartTr);
 }
