@@ -393,6 +393,7 @@ a {
   flex-direction: column;
   gap: 30px;
   align-self: center;
+  position: relative;
 }
 
 .address-show {
@@ -418,18 +419,30 @@ a {
 }
 
 .address-item i {
-  color: green;
+  color: #0075ff;
   font-size: 16px;
 }
 
 .address-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
   align-self: center;
   padding: 20px;
   width: 40%;
   box-shadow: 0px 0px 12px 3px #efefef;
+  transform: scale(0);
+  transition: transform 1s;
+  position: relative;
+  top: -50%;
+  left: 20%;
+}
+
+.address-form.active {
+  transform: scale(1);
+  transition: transform 0.5s;
+  top: 0;
+  left: 0;
 }
 
 .address-form > div {
@@ -437,6 +450,12 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+}
+
+.address-form-btn {
+  align-self: flex-end;
+  width: 35%;
+  margin-top: 10px;
 }
 
 /*responsive*/

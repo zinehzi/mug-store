@@ -1,9 +1,10 @@
 import { cartIcon } from "./index.js";
 
-const listAddress = [];
+let listAddress = [];
 const form = document.getElementById("address-form");
 const formBtn = document.getElementById("address-form-btn");
 const addressList = document.getElementById("address-list");
+const addressBtn = document.getElementById("address-btn");
 
 function submitAddressInfo() {
   let myuuid = Math.floor(Math.random() * 100);
@@ -36,15 +37,24 @@ function submitAddressInfo() {
   displayAddedAddress();
 
   form.reset();
+  form.classList.remove("active");
 }
 
 formBtn.addEventListener("click", submitAddressInfo);
+addressBtn.addEventListener("click", displayAddressForm);
 
-function displayAddedAddress(addressStorage) {
+function displayAddressForm() {
+  form.classList.add("active");
+}
+
+function displayAddedAddress() {
+  let addressStorage = JSON.parse(localStorage.getItem("address"));
+
   if (!addressStorage || addressStorage.length === 0) {
-    console.log("there is no address");
+    displayAddressForm();
   } else {
-    for (let address of addressStorage) {
+    listAddress = addressStorage;
+    for (let address of listAddress) {
       const addressDiv = document.createElement("div");
       addressDiv.className = "address-item";
 
@@ -87,8 +97,7 @@ function displayAddedAddress(addressStorage) {
 }
 
 function render() {
-  let addressStorage = JSON.parse(localStorage.getItem("address"));
-  displayAddedAddress(addressStorage);
+  displayAddedAddress();
 }
 
 render();

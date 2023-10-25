@@ -40,7 +40,7 @@
       <main class="main">
         <section class="address-container">
           <div class="address-show">
-            <button type="button" class="btn address-btn">
+            <button type="button" id="address-btn" class="btn address-btn">
               <i class="fa fa-plus"></i>
               افزودن آدرس جدید
             </button>
@@ -76,10 +76,7 @@
             <div>
               <label>استان :</label>
               <select id="address-state">
-                <option>تهران</option>
-                <option>البرز</option>
-                <option>شیراز</option>
-                <option>اصفهان</option>
+                <option>تهر   هان</option>
                 <option>یزد</option>
               </select>
             </div>
@@ -112,11 +109,7 @@
 
             <div>
               <label> به عنوان آدرس پیش فرض انتخاب شود؟</label>
-              <input
-                type="checkbox"
-                id="default-address"
-                value="false"
-              />
+              <input type="checkbox" id="default-address" value="false" />
             </div>
             <button
               type="button"
