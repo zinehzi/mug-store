@@ -1,12 +1,20 @@
 import { cartIcon } from "./index.js";
 
-let listAddress = [];
+let listAddress;
 const form = document.getElementById("address-form");
 const formBtn = document.getElementById("address-form-btn");
+const formBtnClose = document.getElementById("address-form-btn-container");
 const addressList = document.getElementById("address-list");
 const addressBtn = document.getElementById("address-btn");
 
 function submitAddressInfo() {
+  let addressStorage = JSON.parse(localStorage.getItem("address"));
+  if (!addressStorage || addressStorage.length === 0) {
+    listAddress = [];
+  } else {
+    listAddress = addressStorage;
+  }
+
   let myuuid = Math.floor(Math.random() * 100);
   const addressTitleValue = document.getElementById("address-title").value;
   const addressGetterValue = document.getElementById("address-getter").value;
@@ -32,16 +40,17 @@ function submitAddressInfo() {
     default: defaultAddress(),
   });
 
-  localStorage.setItem("address", JSON.stringify(listAddress));
-  addressList.innerHTML = "";
-  displayAddedAddress();
-
-  form.reset();
+  setToLocalStorage(listAddress);
   form.classList.remove("active");
+  form.reset();
 }
 
 formBtn.addEventListener("click", submitAddressInfo);
 addressBtn.addEventListener("click", displayAddressForm);
+formBtnClose.addEventListener("click", () => {
+  form.classList.remove("active");
+  form.reset();
+});
 
 function displayAddressForm() {
   form.classList.add("active");
@@ -84,11 +93,16 @@ function displayAddedAddress() {
         defaultAddress.classList.add("fa", "fa-check-circle");
       }
 
+      const addressTrash = document.createElement("i");
+      addressTrash.classList.add("fa", "fa-trash");
+      addressTrash.onclick = () => removeFromAddressList(listAddress, address);
+
       addressDiv.append(
         addressTitleDiv,
         addressGetterDiv,
         addressStateDiv,
-        defaultAddress
+        defaultAddress,
+        addressTrash
       );
 
       addressList.appendChild(addressDiv);
@@ -96,8 +110,43 @@ function displayAddedAddress() {
   }
 }
 
+const productContainer = document.getElementById("check-product-container");
+
+function displayAddedProduct() {
+  let cartStorage = JSON.parse(localStorage.getItem("cart"));
+  for (let item of cartStorage) {
+    const productDiv = document.createElement("div");
+
+    const productImg = document.createElement("img");
+    productImg.src = `../images/${item.image}`;
+
+    const productTitle = document.createElement("span");
+    productTitle.textContent = `${item.name}`;
+
+    const productCount = document.createElement("span");
+    productCount.textContent = `(${item.quantity} عدد)`;
+
+    productDiv.append(productImg, productTitle, productCount);
+    productContainer.appendChild(productDiv);
+  }
+}
+
+function removeFromAddressList(listAddress, address) {
+  const addressId = address.id;
+  let newListAddress = listAddress.filter((item) => item.id !== addressId);
+  listAddress = newListAddress;
+  setToLocalStorage(listAddress);
+}
+
+function setToLocalStorage(listAddress) {
+  localStorage.setItem("address", JSON.stringify(listAddress));
+  addressList.innerHTML = "";
+  displayAddedAddress();
+}
+
 function render() {
   displayAddedAddress();
+  displayAddedProduct();
 }
 
 render();

@@ -8,11 +8,10 @@ const displayProductDetail = (product) => {
   const proDetailCaption = document.createElement("div");
   const proDetailTitle = document.createElement("div");
   proDetailTitle.textContent = `عنوان محصول : ${product.name}`;
-  proDetailCaption.appendChild(proDetailTitle);
   proDetailCaption.className = "products-detail-caption";
   const proDetailPrice = document.createElement("span");
   proDetailPrice.textContent = `قیمت محصول : ${product.price} تومان `;
-  proDetailCaption.appendChild(proDetailPrice);
+
   const productDetailBtn = document.createElement("button");
   productDetailBtn.type = "button";
   productDetailBtn.className = "btn";
@@ -20,15 +19,14 @@ const displayProductDetail = (product) => {
   const buttonIcon = document.createElement("i");
   buttonIcon.classList.add("fa", "fa-shopping-cart");
   productDetailBtn.appendChild(buttonIcon);
-  proDetailCaption.appendChild(productDetailBtn);
   productDetailBtn.onclick = () => addToCart(product);
+  proDetailCaption.append(proDetailTitle, proDetailPrice, productDetailBtn);
+
   const proDetailDesc = document.createElement("div");
   proDetailDesc.textContent = `توضیحات تکمیلی : ${product.desc}`;
   proDetailDesc.className = "product-detail-desc";
 
-  proDetailCont.appendChild(proDetailImg);
-  proDetailCont.appendChild(proDetailCaption);
-  proDetailCont.appendChild(proDetailDesc);
+  proDetailCont.append(proDetailImg, proDetailCaption, proDetailDesc);
 };
 
 async function render() {

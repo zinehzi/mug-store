@@ -48,9 +48,7 @@ const displayCartList = () => {
         setToLocalStorage(cartStorage);
       };
 
-      cartCountDiv.appendChild(cartMinus);
-      cartCountDiv.appendChild(cartCount);
-      cartCountDiv.appendChild(cartPlus);
+      cartCountDiv.append(cartMinus, cartCount, cartPlus);
       cartTdCount.appendChild(cartCountDiv);
 
       const cartTdPrice = document.createElement("td");
@@ -67,18 +65,18 @@ const displayCartList = () => {
       const cartTdTrash = document.createElement("td");
       const cartTrash = document.createElement("i");
       cartTrash.classList.add("fa", "fa-trash");
-      cartTrash.onclick = () =>
-        removeFromCart(cartStorage, item);
+      cartTrash.onclick = () => removeFromCart(cartStorage, item);
 
       cartTdTrash.appendChild(cartTrash);
 
-      cartTr.appendChild(cartTdImg);
-      cartTr.appendChild(cartTdTitle);
-      cartTr.appendChild(cartTdCount);
-      cartTr.appendChild(cartTdPrice);
-      cartTr.appendChild(cartTdTotalPrice);
-      cartTr.appendChild(cartTdTrash);
-
+      cartTr.append(
+        cartTdImg,
+        cartTdTitle,
+        cartTdCount,
+        cartTdPrice,
+        cartTdTotalPrice,
+        cartTdTrash
+      );
       cartList.appendChild(cartTr);
 
       cartCalcBox.classList.add("active");
@@ -130,5 +128,3 @@ function render() {
 }
 
 render();
-
-

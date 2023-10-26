@@ -31,11 +31,9 @@ const displayProducts = (products) => {
     buttonIcon.classList.add("fa", "fa-shopping-cart");
     productBtn.appendChild(buttonIcon);
     productBtn.onclick = () => addToCart(product);
-    productCaption.appendChild(productTitle);
-    productCaption.appendChild(productPrice);
-    productDiv.appendChild(productImg);
-    productDiv.appendChild(productCaption);
-    productDiv.appendChild(productBtn);
+
+    productCaption.append(productTitle, productPrice);
+    productDiv.append(productImg, productCaption, productBtn);
     productList.appendChild(productDiv);
   }
 };
@@ -94,5 +92,4 @@ async function render() {
 }
 
 render();
-
-export { addToCart, clickToProductDetail, displayCartCount, cartIcon};
+export { addToCart, clickToProductDetail, displayCartCount, cartIcon };

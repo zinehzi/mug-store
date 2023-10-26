@@ -76,7 +76,10 @@
             <div>
               <label>استان :</label>
               <select id="address-state">
-                <option>تهر   هان</option>
+                <option>تهران</option>
+                <option>البرز</option>
+                <option>شیراز</option>
+                <option>اصفهان</option>
                 <option>یزد</option>
               </select>
             </div>
@@ -111,15 +114,31 @@
               <label> به عنوان آدرس پیش فرض انتخاب شود؟</label>
               <input type="checkbox" id="default-address" value="false" />
             </div>
-            <button
-              type="button"
-              id="address-form-btn"
-              class="btn address-form-btn"
+            <div
+              id="address-form-btn-container"
+              class="address-form-btn-container"
             >
-              ثبت اطلاعات
-            </button>
+              <button
+                type="button"
+                id="address-form-btn"
+                class="btn address-form-btn"
+              >
+                ثبت اطلاعات
+              </button>
+              <button
+                type="button"
+                id="address-form-btn-close"
+                class="btn address-form-btn"
+              >
+                انصراف
+              </button>
+            </div>
           </form>
         </section>
+        <section
+          id="check-product-container"
+          class="check-product-container"
+        ></section>
         <section class="delivery-btn-container">
           <button type="button" class="btn delivery-btn">تایید و پرداخت</button>
         </section>
