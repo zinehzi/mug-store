@@ -1,16 +1,24 @@
 import { fetchProducts } from "./api/products.js";
 import { replaceNumWithComma } from "./global.js";
 
-let cart;
+let products = [];
 let productItem = [];
+let cart;
 let count = 0;
 
 const productList = document.getElementById("product-list");
 const cartIcon = document.getElementById("cart-icon-container");
 const cartIconCount = document.getElementById("cart-icon-count");
+const searchInput = document.getElementById("search-input");
 
-const displayProducts = (products) => {
-  for (let product of products) {
+const displayProducts = (products, search) => {
+  const searchedProducts = products.filter((product) =>
+    product.name.includes(search)
+  );
+  let searchResult = search == null ? products : searchedProducts;
+
+  productList.innerHTML = "";
+  for (let product of searchResult) {
     const productDiv = document.createElement("div");
     productDiv.className = "product";
     const productImg = document.createElement("Img");
@@ -85,11 +93,19 @@ function displayCartCount() {
   }
 }
 
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    const searchInputValue = searchInput.value;
+    displayProducts(products, searchInputValue);
+  });
+}
+
 async function render() {
+  products = await fetchProducts();
   displayCartCount();
-  const products = await fetchProducts();
-  displayProducts(products);
+  displayProducts(products, null);
 }
 
 render();
+
 export { addToCart, clickToProductDetail, displayCartCount, cartIcon };
