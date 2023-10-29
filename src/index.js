@@ -5,6 +5,7 @@ let products = [];
 let productItem = [];
 let cart;
 let count = 0;
+let searchedProducts = [];
 
 const productList = document.getElementById("product-list");
 const cartIcon = document.getElementById("cart-icon-container");
@@ -13,9 +14,14 @@ const searchInput = document.getElementById("search-input");
 const rangeInput = document.getElementById("range-input");
 
 const displayProducts = (products, search, filter) => {
-  const searchedProducts = products.filter((product) =>
-    product.name.includes(search)
-  );
+  if (!searchedProducts || searchedProducts.length === 0) {
+    searchedProducts = products.filter((product) =>
+      product.name.includes(search)
+    );
+  } else {
+    products = searchedProducts;
+  }
+
   let searchResult = search == null ? products : searchedProducts;
 
   const filteredProducts = searchResult.filter(
