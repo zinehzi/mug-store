@@ -10,15 +10,21 @@ const productList = document.getElementById("product-list");
 const cartIcon = document.getElementById("cart-icon-container");
 const cartIconCount = document.getElementById("cart-icon-count");
 const searchInput = document.getElementById("search-input");
+const rangeInput = document.getElementById("range-input");
 
-const displayProducts = (products, search) => {
+const displayProducts = (products, search, filter) => {
   const searchedProducts = products.filter((product) =>
     product.name.includes(search)
   );
   let searchResult = search == null ? products : searchedProducts;
 
+  const filteredProducts = searchResult.filter(
+    (product) => product.price <= filter
+  );
+  let filterResult = filter == null ? searchResult : filteredProducts;
+
   productList.innerHTML = "";
-  for (let product of searchResult) {
+  for (let product of filterResult) {
     const productDiv = document.createElement("div");
     productDiv.className = "product";
     const productImg = document.createElement("Img");
@@ -96,14 +102,19 @@ function displayCartCount() {
 if (searchInput) {
   searchInput.addEventListener("input", () => {
     const searchInputValue = searchInput.value;
-    displayProducts(products, searchInputValue);
+    displayProducts(products, searchInputValue, null);
   });
 }
+
+rangeInput.addEventListener("input", () => {
+  const rangeInputValue = rangeInput.value;
+  displayProducts(products, null, rangeInputValue);
+});
 
 async function render() {
   products = await fetchProducts();
   displayCartCount();
-  displayProducts(products, null);
+  displayProducts(products, null, null);
 }
 
 render();
