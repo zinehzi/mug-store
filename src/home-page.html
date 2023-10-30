@@ -1,0 +1,109 @@
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فروشگاه ماگ استور</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container home-page">
+      <header class="header">
+        <menu class="menu">
+          <ul>
+            <li><a href="./home-page.html">صفحه اصلی</a></li>
+            <li><a href="#">درباره ما</a></li>
+            <li><a href="#">تماس با ما</a></li>
+          </ul>
+        </menu>
+        <h3 class="logo">Mug Store</h3>
+        <div class="left-bar">
+          <div class="search-bar">
+            <i class="fa fa-search"></i>
+            <input
+              type="text"
+              placeholder="عبارت موردنظر را جستجو کنید..."
+              id="search-input"
+            />
+          </div>
+          <div id="cart-icon-container" class="cart-icon-container">
+            <i id="cart-icon" class="fa fa-shopping-cart"></i>
+            <span id="cart-icon-count"></span>
+          </div>
+          <i class="fa fa-user-circle user-profile"></i>
+        </div>
+      </header>
+      <main class="main">
+        <section class="slide-show">
+          <!-- <img src="./images/slider-2.jpg"> -->
+        </section>
+        <section class="main-content">
+          <div class="filter-bar">
+            <fieldset class="price">
+              <legend>فیلتر براساس قیمت</legend>
+              <div>
+                <div id="show-range" class="show-range"></div>
+                <div id="filter-range">
+                  <input
+                    type="range"
+                    min="0"
+                    max="2000000"
+                    value="1000000"
+                    step="100000"
+                    id="range-input"
+                  />
+                </div>
+                <div class="range">
+                  <span>0</span>
+                  <span>2000,000</span>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="style">
+              <legend>فیلتر براساس سبک</legend>
+              <ul>
+                <li>
+                  <label for="style1-input">سنتی</label>
+                  <input type="radio" name="option" value="سنتی" />
+                </li>
+                <li>
+                  <label for="style2-input">مدرن</label>
+                  <input type="radio" name="option" value="مدرن" />
+                </li>
+                <li>
+                  <label for="style3-input">کلاسیک</label>
+                  <input type="radio" name="option" value="کلاسیک" />
+                </li>
+              </ul>
+            </fieldset>
+          </div>
+          <div id="product-list" class="product-list"></div>
+        </section>
+      </main>
+      <footer class="footer">
+        <nav>
+          <ul>
+            <li><a href="#">صفحه اصلی</a></li>
+            <li><a href="#">درباره ما</a></li>
+            <li><a href="#">تماس با ما</a></li>
+          </ul>
+        </nav>
+        <div class="info">
+          <h5>با ما در تماس باشید</h5>
+          <span>021-22000</span>
+          <p>تهران، خیابان آفریقا، بالاتر از پل میرداماد</p>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

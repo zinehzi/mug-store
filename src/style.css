@@ -502,6 +502,14 @@ a {
   gap: 10px;
 }
 
+.default-address-container {
+  justify-content: flex-start !important;
+}
+
+.default-address-container input {
+  width: unset;
+}
+
 .address-form-btn {
   align-self: flex-end;
   width: 20%;
