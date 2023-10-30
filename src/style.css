@@ -101,7 +101,7 @@ textarea {
 }
 
 label {
- white-space: nowrap;
+  white-space: nowrap;
 }
 
 select {
@@ -175,39 +175,68 @@ section {
 .filter-bar {
   display: flex;
   flex-direction: column;
-  flex-basis: 300px;
+  flex-basis: 350px;
   height: 100%;
   gap: 30px;
-  padding: 20px;
+  padding: 30px 20px;
   box-shadow: 0px 2px 6px #efefef;
 }
 
-.filter-bar > div {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+fieldset {
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  font-size: 14px;
 }
 
-.filter-bar .price > label,
-.filter-bar .style > label {
-  font-size: 14px;
+legend {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.filter-bar .show-range {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  min-width: 30px;
+  text-align: center;
+}
+
+.filter-bar .show-range span {
+  font-size: 12px;
   font-weight: 500;
 }
 
-.filter-bar .style > div {
+.filter-bar .range {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-input[type="checkbox"] {
+input[type="range"] {
+  width: 100%;
+}
+
+.filter-bar .style ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.filter-bar .style ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+input[type="radio"] {
   width: 15px;
   height: 15px;
   cursor: pointer;
-}
-
-.filter-bar .style > div label {
-  width: 50px;
 }
 
 .footer {
@@ -238,7 +267,7 @@ a {
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
-  flex-grow: 1;
+  flex: 70%;
   padding: 50px 0;
 }
 

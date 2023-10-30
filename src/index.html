@@ -46,31 +46,44 @@
         </section>
         <section class="main-content">
           <div class="filter-bar">
-            <div class="price">
-              <label>فیلتر براساس قیمت</label>
-              <input
-                type="range"
-                min="0"
-                max="2000000"
-                value="1000000"
-                id="range-input"
-              />
-            </div>
-            <div class="style">
-              <label>فیلتر براساس سبک</label>
+            <fieldset class="price">
+              <legend>فیلتر براساس قیمت</legend>
               <div>
-                <label>سنتی</label>
-                <input type="checkbox" value="سنتی" />
+                <div id="show-range" class="show-range"></div>
+                <div id="filter-range">
+                  <input
+                    type="range"
+                    min="0"
+                    max="2000000"
+                    value="1000000"
+                    step="100000"
+                    id="range-input"
+                  />
+                </div>
+                <div class="range">
+                  <span>0</span>
+                  <span>2000,000</span>
+                </div>
               </div>
-              <div>
-                <label>مدرن</label>
-                <input type="checkbox" value="مدرن" />
-              </div>
-              <div>
-                <label>کلاسیک</label>
-                <input type="checkbox" value="کلاسیک" />
-              </div>
-            </div>
+            </fieldset>
+
+            <fieldset class="style">
+              <legend>فیلتر براساس سبک</legend>
+              <ul>
+                <li>
+                  <label for="style1-input">سنتی</label>
+                  <input type="radio" name="option" value="سنتی" />
+                </li>
+                <li>
+                  <label for="style2-input">مدرن</label>
+                  <input type="radio" name="option" value="مدرن" />
+                </li>
+                <li>
+                  <label for="style3-input">کلاسیک</label>
+                  <input type="radio" name="option" value="کلاسیک" />
+                </li>
+              </ul>
+            </fieldset>
           </div>
           <div id="product-list" class="product-list"></div>
         </section>

@@ -6,31 +6,39 @@ let productItem = [];
 let cart;
 let count = 0;
 let searchedProducts = [];
+const filters = {
+  name: null,
+  price: null,
+  style: null,
+};
 
 const productList = document.getElementById("product-list");
 const cartIcon = document.getElementById("cart-icon-container");
 const cartIconCount = document.getElementById("cart-icon-count");
 const searchInput = document.getElementById("search-input");
 const rangeInput = document.getElementById("range-input");
+const showRange = document.getElementById("show-range");
+const radioInputs = document.querySelectorAll("input[name='option']");
 
-const displayProducts = (products, search, filter) => {
-  if (!searchedProducts || searchedProducts.length === 0) {
-    searchedProducts = products.filter((product) =>
-      product.name.includes(search)
-    );
-  } else {
-    products = searchedProducts;
+const displayProducts = (products, filters) => {
+  for (let x in filters) {
+    if (typeof filters[x] === "string") {
+      searchedProducts = products.filter((product) =>
+        product[x].includes(filters[x])
+      );
+      products = searchedProducts;
+    } else if (typeof filters[x] === "number") {
+      searchedProducts = products.filter(
+        (product) => product.price <= filters[x]
+      );
+      products = searchedProducts;
+    }
   }
 
-  let searchResult = search == null ? products : searchedProducts;
-
-  const filteredProducts = searchResult.filter(
-    (product) => product.price <= filter
-  );
-  let filterResult = filter == null ? searchResult : filteredProducts;
-
-  productList.innerHTML = "";
-  for (let product of filterResult) {
+  if (productList) {
+    productList.innerHTML = "";
+  }
+  for (let product of products) {
     const productDiv = document.createElement("div");
     productDiv.className = "product";
     const productImg = document.createElement("Img");
@@ -54,7 +62,9 @@ const displayProducts = (products, search, filter) => {
 
     productCaption.append(productTitle, productPrice);
     productDiv.append(productImg, productCaption, productBtn);
-    productList.appendChild(productDiv);
+    if (productList) {
+      productList.appendChild(productDiv);
+    }
   }
 };
 
@@ -108,19 +118,46 @@ function displayCartCount() {
 if (searchInput) {
   searchInput.addEventListener("input", () => {
     const searchInputValue = searchInput.value;
-    displayProducts(products, searchInputValue, null);
+    filters.name = searchInputValue;
+    displayProducts(products, filters);
   });
 }
 
-rangeInput.addEventListener("input", () => {
-  const rangeInputValue = rangeInput.value;
-  displayProducts(products, null, rangeInputValue);
-});
+if (rangeInput) {
+  rangeInput.addEventListener("input", () => {
+    const rangeInputValue = Number(rangeInput.value);
+    filters.price = rangeInputValue;
+    updateFilterRange(rangeInputValue);
+    displayProducts(products, filters);
+  });
+}
+
+function updateFilterRange(value) {
+  const showValue = document.createElement("span");
+  const rangeWidth = rangeInput.clientWidth;
+  const thumbWidth = 490;
+  const position =
+    ((filters.price - rangeInput.min) / (rangeInput.max - rangeInput.min)) *
+    (rangeWidth - thumbWidth);
+  showRange.style.left = position + "px";
+  showValue.textContent = replaceNumWithComma(value);
+  showRange.innerHTML = "";
+  showRange.appendChild(showValue);
+}
+
+for (let item of radioInputs) {
+  item.addEventListener("input", () => {
+    if (item.checked) {
+      filters.style = item.value;
+      displayProducts(products, filters);
+    }
+  });
+}
 
 async function render() {
   products = await fetchProducts();
   displayCartCount();
-  displayProducts(products, null, null);
+  displayProducts(products, null);
 }
 
 render();
