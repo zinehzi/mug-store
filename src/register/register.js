@@ -2,6 +2,9 @@ const user = JSON.parse(localStorage.getItem("user"));
 const registerBtn = document.getElementById("register-btn");
 const msgBtn = document.querySelector(".msg-btn");
 const userName = document.getElementById("username");
+const name = document.getElementById("name");
+const family = document.getElementById("family");
+const phone = document.getElementById("phone");
 const passWord = document.getElementById("password");
 const msgContainer = document.querySelector(".message-container");
 const textMsg = document.querySelector(".text-message");
@@ -10,6 +13,9 @@ let account;
 function getRegisterInfo() {
   const usernameValue = userName.value;
   const passwordValue = passWord.value;
+  const nameValue = name.value;
+  const familyValue = family.value;
+
   let txt = "";
   let icon = "";
 
@@ -19,6 +25,8 @@ function getRegisterInfo() {
       account.push({
         username: usernameValue,
         password: passwordValue,
+        name: nameValue,
+        family: familyValue,
       });
       txt = "کاربر گرامی، حساب کاربری شما ایجاد شد.";
       icon = "fa-check-circle";
@@ -31,6 +39,8 @@ function getRegisterInfo() {
         account.push({
           username: usernameValue,
           password: passwordValue,
+          name: nameValue,
+          family: familyValue,
         });
         txt = "کاربر گرامی، حساب کاربری شما ایجاد شد.";
         icon = "fa-check-circle";
@@ -46,7 +56,7 @@ function getRegisterInfo() {
   localStorage.setItem("user", JSON.stringify(account));
 
   msgBtn.onclick = () => {
-    window.location.href = "/src/login/index.html";
+    window.location.href = "/src/login/login.html";
   };
 }
 

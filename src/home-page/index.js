@@ -19,6 +19,8 @@ const searchInput = document.getElementById("search-input");
 const rangeInput = document.getElementById("range-input");
 const showRange = document.getElementById("show-range");
 const radioInputs = document.querySelectorAll("input[name='option']");
+const userMenu = document.getElementById("user-menu");
+const userPhoto = document.getElementById("user-photo");
 
 const displayProducts = (products, filters) => {
   for (let x in filters) {
@@ -32,7 +34,7 @@ const displayProducts = (products, filters) => {
         (product) => product.price <= filters[x]
       );
       products = searchedProducts;
-    } 
+    }
   }
 
   if (productList) {
@@ -98,6 +100,12 @@ cartIcon.addEventListener("click", () => {
   window.location.href = "/src/shopping-cart/shopping-cart.html";
 });
 
+userPhoto.addEventListener("click", displayMenu);
+
+function displayMenu() {
+  userMenu.classList.toggle("active");
+}
+
 function displayCartCount() {
   const cartStorage = JSON.parse(localStorage.getItem("cart"));
   if (!cartStorage || cartStorage.length === 0) {
@@ -154,8 +162,27 @@ for (let item of radioInputs) {
   });
 }
 
+function displayUserName() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const username = JSON.parse(localStorage.getItem("username"));
+  const userName = document.getElementById("user-name");
+
+  if (!user || user.length === 0) {
+    userName.textContent = "وارد شوید";
+    userName.onclick = () => {
+      window.location.href = "/src/login/login.html";
+    };
+    userName.style.cursor = "pointer";
+    userPhoto.removeEventListener("click", displayMenu);
+  } else {
+    const userItem = user.find((item) => item.username === username);
+    userName.textContent = userItem.name + " " + userItem.family;
+  }
+}
+
 async function render() {
   products = await fetchProducts();
+  displayUserName();
   displayCartCount();
   displayProducts(products, null);
 }

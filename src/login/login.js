@@ -1,5 +1,5 @@
 import { showMessage, msgBtn } from "../register/register.js";
-const user = JSON.parse(localStorage.getItem("user"));
+let user = JSON.parse(localStorage.getItem("user"));
 const loginBtn = document.getElementById("login-btn");
 const loginUserName = document.getElementById("login-username");
 const loginPass = document.getElementById("login-pass");
@@ -7,18 +7,28 @@ const loginPass = document.getElementById("login-pass");
 function checkUserAccount() {
   let txt = "";
   let icon = "";
+  const loginUserNameValue = loginUserName.value;
+  const loginPassValue = loginPass.value;
 
-  for (let item of user) {
-    if (loginUserName.value !== "" && loginPass.value !== "") {
-      if (
-        loginUserName.value === item.username &&
-        loginPass.value === item.password
-      ) {
-        window.location.href = "/src/home-page/home-page.html";
-      } else {
-        txt = "کاربری با مشخصات وارد شده وجود ندارد.";
-        icon = "fa-warning";
-        showMessage(txt, icon);
+  if (!user || user.length === 0) {
+    user = [];
+    txt = "کاربری با مشخصات وارد شده وجود ندارد.";
+    icon = "fa-warning";
+    showMessage(txt, icon);
+  } else {
+    for (let item of user) {
+      if (loginUserNameValue !== "" && loginPassValue !== "") {
+        if (
+          loginUserNameValue === item.username &&
+          loginPassValue === item.password
+        ) {
+          localStorage.setItem("username", JSON.stringify(loginUserNameValue));
+          window.location.href = "/src/home-page/index.html";
+        } else {
+          txt = "کاربری با مشخصات وارد شده وجود ندارد.";
+          icon = "fa-warning";
+          showMessage(txt, icon);
+        }
       }
     }
   }
