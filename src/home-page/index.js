@@ -1,5 +1,5 @@
-import { fetchProducts } from "./api/products.js";
-import { replaceNumWithComma } from "./global.js";
+import { fetchProducts } from "../api/products.js";
+import { replaceNumWithComma } from "../utils/global.js";
 
 let products = [];
 let productItem = [];
@@ -42,7 +42,7 @@ const displayProducts = (products, filters) => {
     const productDiv = document.createElement("div");
     productDiv.className = "product";
     const productImg = document.createElement("Img");
-    productImg.src = `../images/${product.image}`;
+    productImg.src = `../../images/${product.image}`;
     productImg.onclick = () => clickToProductDetail(product);
 
     const productCaption = document.createElement("div");
@@ -70,7 +70,7 @@ const displayProducts = (products, filters) => {
 
 function clickToProductDetail(product) {
   productItem = [];
-  window.location.href = "/src/product-detail.html";
+  window.location.href = "/src/product-detail/product-detail.html";
   productItem.push({
     id: product._id,
   });
@@ -95,7 +95,7 @@ function addToCart(product) {
 }
 
 cartIcon.addEventListener("click", () => {
-  window.location.href = "/src/shopping-cart.html";
+  window.location.href = "/src/shopping-cart/shopping-cart.html";
 });
 
 function displayCartCount() {
@@ -135,7 +135,7 @@ if (rangeInput) {
 function updateFilterRange(value) {
   const showValue = document.createElement("span");
   const rangeWidth = rangeInput.clientWidth;
-  const thumbWidth = 490;
+  const thumbWidth = 530;
   const position =
     ((filters.price - rangeInput.min) / (rangeInput.max - rangeInput.min)) *
     (rangeWidth - thumbWidth);

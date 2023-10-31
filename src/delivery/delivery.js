@@ -1,4 +1,4 @@
-import { cartIcon } from "./index.js";
+import { cartIcon } from "../home-page/index.js";
 
 let listAddress;
 const form = document.getElementById("address-form");
@@ -118,7 +118,7 @@ function displayAddedProduct() {
     const productDiv = document.createElement("div");
 
     const productImg = document.createElement("img");
-    productImg.src = `../images/${item.image}`;
+    productImg.src = `../../images/${item.image}`;
 
     const productTitle = document.createElement("span");
     productTitle.textContent = `${item.name}`;

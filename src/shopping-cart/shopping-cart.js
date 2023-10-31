@@ -1,5 +1,5 @@
-import { clickToProductDetail, displayCartCount } from "./index.js";
-import { replaceNumWithComma } from "./global.js";
+import { clickToProductDetail, displayCartCount } from "../home-page/index.js";
+import { replaceNumWithComma } from "../utils/global.js";
 
 const cartList = document.getElementById("cart-list");
 const cartCalcBox = document.getElementById("cart-calc");
@@ -16,7 +16,7 @@ const displayCartList = () => {
 
       const cartTdImg = document.createElement("td");
       const cartImg = document.createElement("img");
-      cartImg.src = `../images/${item.image}`;
+      cartImg.src = `../../images/${item.image}`;
       cartTdImg.appendChild(cartImg);
       cartImg.onclick = () => clickToProductDetail(item);
 
@@ -82,7 +82,7 @@ const displayCartList = () => {
       cartCalcBox.classList.add("active");
       cartBtn.classList.add("active");
       cartBtn.onclick = () => {
-        window.location.href = "/src/delivery.html";
+        window.location.href = "/src/delivery/delivery.html";
       };
 
       cartFinalPrice += totalPrice;

@@ -1,10 +1,10 @@
-import { fetchProduct } from "./api/products.js";
-import { addToCart } from "./index.js";
+import { fetchProduct } from "../api/products.js";
+import { addToCart } from "../home-page/index.js";
 
 const displayProductDetail = (product) => {
   const proDetailCont = document.getElementById("product-detail-container");
   const proDetailImg = document.createElement("img");
-  proDetailImg.src = `../images/${product.image}`;
+  proDetailImg.src = `../../images/${product.image}`;
   const proDetailCaption = document.createElement("div");
   const proDetailTitle = document.createElement("div");
   proDetailTitle.textContent = `عنوان محصول : ${product.name}`;

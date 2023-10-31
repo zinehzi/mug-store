@@ -10,7 +10,7 @@ function checkUserAccount() {
         loginUserName.value === item.username &&
         loginPass.value === item.password
       ) {
-        window.location.href = "/src/home-page.html";
+        window.location.href = "/src/home-page/home-page.html";
       }
     }
   }

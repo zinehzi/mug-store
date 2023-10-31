@@ -54,7 +54,7 @@ function getRegisterInfo() {
   localStorage.setItem("user", JSON.stringify(account));
 
   msgBtn.onclick = () => {
-    window.location.href = "/src/index.html";
+    window.location.href = "/src/login/index.html";
   };
 }
 

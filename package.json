@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/main.js",
-    "db": "node src/mongo.js"
+    "start": "nodemon src/backend/main.js",
+    "db": "node src/backend/mongo.js"
   },
   "keywords": [],
   "author": "",
