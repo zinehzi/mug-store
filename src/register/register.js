@@ -1,16 +1,17 @@
 const user = JSON.parse(localStorage.getItem("user"));
 const registerBtn = document.getElementById("register-btn");
-const msgBtn = document.getElementById("msg-btn");
-const rememberBtn = document.getElementById("remember-btn");
+const msgBtn = document.querySelector(".msg-btn");
 const userName = document.getElementById("username");
 const passWord = document.getElementById("password");
-const msgContainer = document.getElementById("message-container");
-const textMsg = document.getElementById("text-message");
+const msgContainer = document.querySelector(".message-container");
+const textMsg = document.querySelector(".text-message");
 let account;
 
 function getRegisterInfo() {
   const usernameValue = userName.value;
   const passwordValue = passWord.value;
+  let txt = "";
+  let icon = "";
 
   if (!user || user.length === 0) {
     account = [];
@@ -19,12 +20,9 @@ function getRegisterInfo() {
         username: usernameValue,
         password: passwordValue,
       });
-      localStorage.setItem("user", JSON.stringify(account));
-      textMsg.textContent = "کاربر گرامی، حساب کاربری شما ایجاد شد.";
-      const msgIcon = document.createElement("i");
-      msgIcon.classList.add("fa", "fa-check-circle");
-      textMsg.appendChild(msgIcon);
-      msgContainer.classList.add("active");
+      txt = "کاربر گرامی، حساب کاربری شما ایجاد شد.";
+      icon = "fa-check-circle";
+      showMessage(txt, icon);
     }
   } else {
     account = user;
@@ -34,19 +32,13 @@ function getRegisterInfo() {
           username: usernameValue,
           password: passwordValue,
         });
-        localStorage.setItem("user", JSON.stringify(account));
-        textMsg.textContent = "کاربر گرامی، حساب کاربری شما ایجاد شد.";
-        const msgIcon = document.createElement("i");
-        msgIcon.classList.add("fa", "fa-check-circle");
-        textMsg.appendChild(msgIcon);
-        msgContainer.classList.add("active");
+        txt = "کاربر گرامی، حساب کاربری شما ایجاد شد.";
+        icon = "fa-check-circle";
+        showMessage(txt, icon);
       } else {
-        textMsg.textContent = "شما قبلا با این حساب کاربری ثبت نام کرده اید.";
-        const msgIcon = document.createElement("i");
-        msgIcon.classList.add("fa", "fa-warning");
-        msgIcon.style.color = "red";
-        textMsg.appendChild(msgIcon);
-        msgContainer.classList.add("active");
+        txt = "شما قبلا با این حساب کاربری ثبت نام کرده اید.";
+        icon = "fa-warning";
+        showMessage(txt, icon);
       }
     }
   }
@@ -58,6 +50,16 @@ function getRegisterInfo() {
   };
 }
 
+function showMessage(txt, icon) {
+  textMsg.textContent = txt;
+  const msgIcon = document.createElement("i");
+  msgIcon.classList.add("fa", icon);
+  textMsg.appendChild(msgIcon);
+  msgContainer.classList.add("active");
+}
+
 if (registerBtn) {
   registerBtn.addEventListener("click", getRegisterInfo);
 }
+
+export { showMessage, msgBtn };
