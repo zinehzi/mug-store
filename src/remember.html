@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>صفحه ورود</title>
+    <title>فراموشی کلمه عبور</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container account login">
+    <div class="container account remember">
       <h3 class="login-title">فروشگاه اینترنتی ماگ استور</h3>
       <main class="login-form">
         <div>
@@ -16,24 +16,24 @@
           <input
             type="text"
             placeholder="نام کاربری را وارد کنید..."
-            id="login-username"
-          />
-        </div>
-        <div>
-          <label>کلمه عبور</label>
-          <input
-            type="password"
-            placeholder="کلمه عبور را وارد کنید..."
-            id="login-pass"
           />
         </div>
 
-        <div class="login-btn-container">
-          <a href="/src/remember.html">فراموشی کلمه عبور</a>
-          <button type="button" id="login-btn" class="btn">وارد شوید</button>
+        <div>
+          <label> کلمه عبور جدید</label>
+          <input type="password" placeholder="کلمه عبور جدید را وارد کنید..." />
         </div>
         <div>
-          <a href="/src/register.html"> حساب کاربری ندارید؟ ثبت نام کنید...</a>
+          <label> تکرار کلمه عبور</label>
+          <input type="password" placeholder="تکرار کلمه عبور را وارد کنید..." />
+        </div>
+        <div class="login-btn-container">
+          <button type="button" id="remember-btn" class="btn">
+            <a href="/src/index.html">بازنشانی</a>
+          </button>
+        </div>
+        <div>
+          <a href="/src/index.html"> حساب کاربری دارید؟ وارد شوید...</a>
         </div>
       </main>
     </div>

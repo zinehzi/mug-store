@@ -32,7 +32,7 @@ const displayProducts = (products, filters) => {
         (product) => product.price <= filters[x]
       );
       products = searchedProducts;
-    }
+    } 
   }
 
   if (productList) {
