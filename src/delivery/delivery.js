@@ -6,6 +6,7 @@ const formBtn = document.getElementById("address-form-btn");
 const formBtnClose = document.getElementById("address-form-btn-container");
 const addressList = document.getElementById("address-list");
 const addressBtn = document.getElementById("address-btn");
+const deliveryBtn = document.getElementById("delivery-btn");
 
 function submitAddressInfo() {
   let addressStorage = JSON.parse(localStorage.getItem("address"));
@@ -143,6 +144,10 @@ function setToLocalStorage(listAddress) {
   addressList.innerHTML = "";
   displayAddedAddress();
 }
+
+deliveryBtn.addEventListener("click", () => {
+  window.location.href = "../../src/payment/payment.html";
+});
 
 function render() {
   displayAddedAddress();

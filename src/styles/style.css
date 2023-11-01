@@ -41,7 +41,6 @@ body {
   font-weight: 400;
 }
 
-
 .container {
   display: grid;
   height: 100%;
@@ -54,6 +53,16 @@ body {
   height: 100%;
   gap: 50px;
   background-color: rgba(231, 231, 231, 0.2);
+}
+
+.container.payment {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.container.payment .main {
+  display: flex;
 }
 
 .main {
@@ -76,6 +85,11 @@ body {
 section {
   display: flex;
   width: 100%;
+}
+
+section.right-side {
+  flex-direction: column;
+  gap: 20px;
 }
 
 ul {
@@ -697,6 +711,25 @@ input[type="radio"] {
 
 .fa-warning {
   color: red !important;
+}
+
+/*Payment Styles*/
+.payment header {
+  height: 120px;
+}
+
+.shap-logo {
+  width: 124px;
+  height: 84px;
+}
+
+.bank-logo {
+  width: 240px;
+  height: 84px;
+}
+
+.header-title {
+  font-weight: 500;
 }
 
 /*Responsive Styles*/
