@@ -4,6 +4,8 @@ const loginBtn = document.getElementById("login-btn");
 const loginUserName = document.getElementById("login-username");
 const loginPass = document.getElementById("login-pass");
 
+/*Check User Account For Login*/
+
 function checkUserAccount() {
   let txt = "";
   let icon = "";

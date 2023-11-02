@@ -9,6 +9,8 @@ const reciever = document.getElementById("reciever");
 let txt = "";
 let icon = "";
 
+/* Confirm Payment Process*/
+
 confirmBtn.onclick = () => {
   txt = "عملیات پرداخت با موفقیت انجام شد.";
   icon = "fa-check-circle";
@@ -19,6 +21,8 @@ confirmBtn.onclick = () => {
   localStorage.removeItem("cart");
 };
 
+/*Reject Payment Process*/
+
 cancelBtn.onclick = () => {
   txt = "عملیات پرداخت ناموفق بود.";
   icon = "fa-warning";
@@ -28,12 +32,16 @@ cancelBtn.onclick = () => {
   };
 };
 
+/*Get Reciever Info*/
+
 function showRecieverName() {
   const user = JSON.parse(localStorage.getItem("user"));
   const username = JSON.parse(localStorage.getItem("username"));
   const userItem = user.find((item) => item.username === username);
   reciever.textContent = userItem.name + " " + userItem.family;
 }
+
+/*Get Final Price To Pay*/
 
 function showFinalPrice() {
   const finalPriceStorage = JSON.parse(localStorage.getItem("final-price"));

@@ -5,6 +5,8 @@ const cartList = document.getElementById("cart-list");
 const cartCalcBox = document.getElementById("cart-calc");
 const cartBtn = document.getElementById("cart-btn");
 
+/*Display Cart List*/
+
 const displayCartList = () => {
   let cartStorage = JSON.parse(localStorage.getItem("cart"));
   if (!cartStorage || cartStorage.length === 0) {
@@ -91,10 +93,12 @@ const displayCartList = () => {
       const lastElem = cartCalcBox.lastElementChild.lastElementChild;
       const cartPaidPrice = Math.round((cartFinalPrice + 30000) * 1.09);
       lastElem.textContent = replaceNumWithComma(cartPaidPrice);
-      localStorage.setItem("final-price",JSON.stringify(cartPaidPrice));
+      localStorage.setItem("final-price", JSON.stringify(cartPaidPrice));
     }
   }
 };
+
+/*Updating Cart List*/
 
 function removeFromCart(cartStorage, item) {
   const itemId = item._id;
@@ -107,11 +111,15 @@ function removeFromCart(cartStorage, item) {
   }
 }
 
+/*Set Cart Info To Local Storage*/
+
 function setToLocalStorage(cartStorage) {
   localStorage.setItem("cart", JSON.stringify(cartStorage));
   cartList.innerHTML = "";
   render();
 }
+
+/*Display Message For Empty Cart List*/
 
 function showEmptyMessage() {
   const cartTr = document.createElement("tr");

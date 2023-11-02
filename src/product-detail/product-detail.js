@@ -1,6 +1,8 @@
 import { fetchProduct } from "../api/products.js";
 import { addToCart } from "../home-page/index.js";
 
+/*Display Product Details*/
+
 const displayProductDetail = (product) => {
   const proDetailCont = document.getElementById("product-detail-container");
   const proDetailImg = document.createElement("img");

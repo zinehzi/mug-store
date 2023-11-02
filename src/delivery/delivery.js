@@ -8,6 +8,8 @@ const addressList = document.getElementById("address-list");
 const addressBtn = document.getElementById("address-btn");
 const deliveryBtn = document.getElementById("delivery-btn");
 
+/*Adding New Address*/
+
 function submitAddressInfo() {
   let addressStorage = JSON.parse(localStorage.getItem("address"));
 
@@ -61,6 +63,8 @@ formBtnClose.addEventListener("click", () => {
 function displayAddressForm() {
   form.classList.add("active");
 }
+
+/*Display Address List*/
 
 function displayAddedAddress() {
   let addressStorage = JSON.parse(localStorage.getItem("address"));
@@ -117,8 +121,29 @@ function displayAddedAddress() {
   }
 }
 
-const productContainer = document.getElementById("check-product-container");
+/*Update Address List*/
 
+function removeFromAddressList(listAddress, address) {
+  const addressId = address.id;
+  let newListAddress = listAddress.filter((item) => item.id !== addressId);
+  listAddress = newListAddress;
+  setToLocalStorage(listAddress);
+  if (!listAddress || listAddress.length === 0) {
+    deliveryBtn.classList.remove("active");
+  }
+}
+
+/*Set Address To Local Storage*/
+
+function setToLocalStorage(listAddress) {
+  localStorage.setItem("address", JSON.stringify(listAddress));
+  addressList.innerHTML = "";
+  displayAddedAddress();
+}
+
+/*Display Final Product List*/
+
+const productContainer = document.getElementById("check-product-container");
 function displayAddedProduct() {
   let cartStorage = JSON.parse(localStorage.getItem("cart"));
   for (let item of cartStorage) {
@@ -138,21 +163,7 @@ function displayAddedProduct() {
   }
 }
 
-function removeFromAddressList(listAddress, address) {
-  const addressId = address.id;
-  let newListAddress = listAddress.filter((item) => item.id !== addressId);
-  listAddress = newListAddress;
-  setToLocalStorage(listAddress);
-  if (!listAddress || listAddress.length === 0) {
-    deliveryBtn.classList.remove("active");
-  }
-}
-
-function setToLocalStorage(listAddress) {
-  localStorage.setItem("address", JSON.stringify(listAddress));
-  addressList.innerHTML = "";
-  displayAddedAddress();
-}
+/*Go To Payment Page*/
 
 deliveryBtn.addEventListener("click", () => {
   window.location.href = "../../src/payment/payment.html";

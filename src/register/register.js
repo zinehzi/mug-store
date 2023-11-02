@@ -10,6 +10,8 @@ const msgContainer = document.querySelector(".message-container");
 const textMsg = document.querySelector(".text-message");
 let account;
 
+/*Get User Info To Register*/
+
 function getRegisterInfo() {
   const usernameValue = userName.value;
   const passwordValue = passWord.value;
@@ -60,16 +62,19 @@ function getRegisterInfo() {
   };
 }
 
+
+if (registerBtn) {
+  registerBtn.addEventListener("click", getRegisterInfo);
+}
+
+/*Show Relevant Message To User*/
+
 function showMessage(txt, icon) {
   textMsg.textContent = txt;
   const msgIcon = document.createElement("i");
   msgIcon.classList.add("fa", icon);
   textMsg.appendChild(msgIcon);
   msgContainer.classList.add("active");
-}
-
-if (registerBtn) {
-  registerBtn.addEventListener("click", getRegisterInfo);
 }
 
 export { showMessage, msgBtn };
