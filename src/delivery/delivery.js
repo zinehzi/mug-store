@@ -10,6 +10,7 @@ const deliveryBtn = document.getElementById("delivery-btn");
 
 function submitAddressInfo() {
   let addressStorage = JSON.parse(localStorage.getItem("address"));
+
   if (!addressStorage || addressStorage.length === 0) {
     listAddress = [];
   } else {
@@ -44,6 +45,10 @@ function submitAddressInfo() {
   setToLocalStorage(listAddress);
   form.classList.remove("active");
   form.reset();
+
+  if (listAddress) {
+    deliveryBtn.classList.add("active");
+  }
 }
 
 formBtn.addEventListener("click", submitAddressInfo);
@@ -108,6 +113,7 @@ function displayAddedAddress() {
 
       addressList.appendChild(addressDiv);
     }
+    deliveryBtn.classList.add("active");
   }
 }
 
@@ -137,6 +143,9 @@ function removeFromAddressList(listAddress, address) {
   let newListAddress = listAddress.filter((item) => item.id !== addressId);
   listAddress = newListAddress;
   setToLocalStorage(listAddress);
+  if (!listAddress || listAddress.length === 0) {
+    deliveryBtn.classList.remove("active");
+  }
 }
 
 function setToLocalStorage(listAddress) {

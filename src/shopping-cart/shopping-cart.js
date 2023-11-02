@@ -91,6 +91,7 @@ const displayCartList = () => {
       const lastElem = cartCalcBox.lastElementChild.lastElementChild;
       const cartPaidPrice = Math.round((cartFinalPrice + 30000) * 1.09);
       lastElem.textContent = replaceNumWithComma(cartPaidPrice);
+      localStorage.setItem("final-price",JSON.stringify(cartPaidPrice));
     }
   }
 };
