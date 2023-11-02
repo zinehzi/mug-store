@@ -187,7 +187,7 @@ input[type="text"],
 input[type="number"],
 input[type="password"],
 input[type="email"],
-ّ select,
+select,
 textarea {
   border: 1px solid #dbdbdb;
   border-radius: 5px;
@@ -744,7 +744,7 @@ input[type="radio"] {
   background-color: #fff;
   box-shadow: 0px 2px 6px #c8c8c8;
   border-radius: 5px;
-  padding: 15px 35px;
+  padding: 15px 35px 35px 35px;
 }
 
 section.right-side {

@@ -1,13 +1,21 @@
 import { showMessage, msgBtn } from "../register/register.js";
 import { replaceNumWithComma } from "../utils/global.js";
 
-let cartStorage = JSON.parse(localStorage.getItem("cart"));
 const confirmBtn = document.getElementById("confirm");
 const cancelBtn = document.getElementById("cancel");
 const finalPrice = document.getElementById("payment-price");
 const reciever = document.getElementById("reciever");
+const secondPassBtn = document.getElementById("second-pass");
+const secondPassInput = document.getElementById("second-pass-input");
+
 let txt = "";
 let icon = "";
+
+/*Get Second Pass*/
+
+secondPassBtn.onclick = () => {
+  secondPassInput.value = "123456";
+};
 
 /* Confirm Payment Process*/
 
